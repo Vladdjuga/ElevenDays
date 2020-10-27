@@ -9,11 +9,11 @@
     <StackPanel Margin="100">
         <DockPanel>
             <Label Content="Email:"/>
-            <TextBox/>
+            <TextBox x:Name="tbEmail"/>
         </DockPanel>
         <DockPanel Margin="0,30">
             <Label Content="Password:"/>
-            <PasswordBox/>
+            <PasswordBox x:Name="tbPassword"/>
         </DockPanel>
         <DockPanel LastChildFill="False">
             <Button Content="Log In" DockPanel.Dock="Top" Click="Button_Click_1"/>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,7 +32,15 @@ namespace UI_ElevenDays
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            this.Hide();
 
+            string hash = Model_Users.GetHash(SHA256.Create(), tbPassword.Password);
+            if (model_Users.Users.Any(el => el.Email == tbEmail.Text && el.PasswordHash == hash))
+            {
+                MenuWindow menuWindow = new MenuWindow();
+                menuWindow.ShowDialog();
+            }
+            this.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

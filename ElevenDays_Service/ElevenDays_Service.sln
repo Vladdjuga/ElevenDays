@@ -16,6 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Icon", "Icon", "{D2CEEF65-0
 		..\..\..\My way\icon.jpg = ..\..\..\My way\icon.jpg
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sounds", "Sounds", "{CD93BC11-D0CD-4B75-8E2E-26BC72882A40}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\04725.mp3 = ..\..\..\..\Downloads\04725.mp3
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
