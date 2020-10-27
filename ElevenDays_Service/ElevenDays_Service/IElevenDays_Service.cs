@@ -41,6 +41,15 @@ namespace ElevenDays_Service
     {
         // тут будут координаты но пока хз какие 
         // х , у - будут представлять эти координаты
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        // конструктор для класса
+        public PositionPlayer(double x,double y)
+        {
+            X = x;
+            Y = y;
+        }
     }
 
     // этот класс описывает игру с игроками
@@ -55,5 +64,18 @@ namespace ElevenDays_Service
     {
         // массив в котором есть запущеные игры , с вместительством - 1024
         public List<GameInfo> Games { get; set; } = new List<GameInfo>(1024);
+
+        public bool IsContainsUser(User user)
+        {
+            foreach (var game in Games)
+            {
+                foreach (var player in game.Players)
+                {
+                    if (player.User.Id == user.Id)
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }
