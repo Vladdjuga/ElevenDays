@@ -37,7 +37,7 @@ namespace UI_ElevenDays
             string hash = Model_Users.GetHash(SHA256.Create(), tbPassword.Password);
             if (model_Users.Users.Any(el => el.Email == tbEmail.Text && el.PasswordHash == hash))
             {
-                MenuWindow menuWindow = new MenuWindow();
+                MenuEDs menuWindow = new MenuEDs();
                 menuWindow.ShowDialog();
             }
             this.Visibility = Visibility.Visible;

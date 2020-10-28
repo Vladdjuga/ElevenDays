@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
-        Title="Eleven Days" Height="450" Width="800" Icon="icon.jpg">
+        Title="Eleven Days" Height="450" Width="800">
     <StackPanel Margin="100">
         <DockPanel>
             <Label Content="Email:"/>
