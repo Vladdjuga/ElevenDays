@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="977ac2f6-905b-4cb3-b257-97742e01ef5a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7780cb7e-7bd7-469b-92ac-642629edf3b2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="aa3b2e08-2cba-46bd-b3da-87faa216664d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="71354a24-2e53-4723-9032-6905266016dd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="DLL_User.xsd" MetadataType="Schema" ID="44b2fe8a-6f76-4f6c-80fb-9b38400def25" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="ElevenDays_Service.xsd" MetadataType="Schema" ID="2a5aed2c-895a-4be7-aeeb-3de1e6a59086" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="PlayerCordons.xsd" MetadataType="Schema" ID="b595acba-02a4-4a15-afc7-8d077182c53f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

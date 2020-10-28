@@ -1,9 +1,10 @@
-﻿<Window x:Class="UI_ElevenDays.RegisterWindow"
+﻿<Window x:Class="UI_ElevenDays.GameWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_ElevenDays"
+        xmlns:map="clr-namespace:UI_ElevenDays.map"
         mc:Ignorable="d"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -13,22 +14,8 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Eleven Days" Height="450" Width="800" Icon="icon.jpg">
-    <StackPanel Margin="100">
-        <DockPanel>
-            <Label Content="Login:"/>
-            <TextBox x:Name="tbLogin"/>
-        </DockPanel>
-        <DockPanel Margin="0,30,0,0">
-            <Label Content="Email:"/>
-            <TextBox x:Name="tbEmail"/>
-        </DockPanel>
-        <DockPanel Margin="0,30">
-            <Label Content="Password:"/>
-            <PasswordBox x:Name="pbPassword"/>
-        </DockPanel>
-        <DockPanel LastChildFill="False">
-            <Button Content="Register" DockPanel.Dock="Top" Click="Button_Click"/>
-        </DockPanel>
-    </StackPanel>
+        Title="GameWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
+    <Grid>
+        <map:Room1 x:Name="room"/>
+    </Grid>
 </Window>

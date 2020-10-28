@@ -32,13 +32,13 @@ namespace UI_ElevenDays
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Visibility = Visibility.Collapsed;
 
             string hash = Model_Users.GetHash(SHA256.Create(), tbPassword.Password);
             if (model_Users.Users.Any(el => el.Email == tbEmail.Text && el.PasswordHash == hash))
             {
-                MenuEDs menuWindow = new MenuEDs();
-                menuWindow.ShowDialog();
+                MenuEDs menuWindow = new MenuEDs(model_Users.Users.FirstOrDefault(el => el.Email == tbEmail.Text && el.PasswordHash == hash));
+                if(menuWindow.ShowDialog()==true);
             }
             this.Visibility = Visibility.Visible;
         }

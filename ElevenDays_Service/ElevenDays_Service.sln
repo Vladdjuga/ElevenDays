@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_User", "DLL_User\DAL_User.csproj", "{930C43CD-175D-4B7F-855C-B574EB31BDFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_ElevenDays", "UI_ElevenDays\UI_ElevenDays.csproj", "{E23EC5FF-E525-4A01-B26E-7326CFCB0C63}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B38AC279-0300-419B-B725-E1F5CAC297CF} = {B38AC279-0300-419B-B725-E1F5CAC297CF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{4847E5CD-9567-472A-B121-54AF6EA513AB}"
 EndProject
@@ -20,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sounds", "Sounds", "{CD93BC
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Downloads\04725.mp3 = ..\..\..\..\Downloads\04725.mp3
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerCordons", "PlayerCordons\PlayerCordons.csproj", "{882E0908-75BA-4232-AB4D-6F25899CDFA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{E23EC5FF-E525-4A01-B26E-7326CFCB0C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E23EC5FF-E525-4A01-B26E-7326CFCB0C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E23EC5FF-E525-4A01-B26E-7326CFCB0C63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{882E0908-75BA-4232-AB4D-6F25899CDFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{882E0908-75BA-4232-AB4D-6F25899CDFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{882E0908-75BA-4232-AB4D-6F25899CDFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{882E0908-75BA-4232-AB4D-6F25899CDFA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
