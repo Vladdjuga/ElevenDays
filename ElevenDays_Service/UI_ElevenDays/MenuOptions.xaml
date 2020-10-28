@@ -16,7 +16,7 @@
         Title="MenuOptions" Height="450" Width="800">
     <Grid >
         <Grid.Background>
-            <ImageBrush ImageSource="ImDangBan.jpg"></ImageBrush>
+            <ImageBrush ImageSource="MenuOptions.png"></ImageBrush>
         </Grid.Background>
     </Grid>
 </Window>
