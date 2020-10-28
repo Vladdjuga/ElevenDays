@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLL_User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MenuEDs : Window
     {
-        public MenuEDs()
+        User user = new User();
+        public MenuEDs(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
 
@@ -39,6 +42,19 @@ namespace UI_ElevenDays
         private void btnOpt_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+
+            GameWindow gameWindow = new GameWindow(user);
+            if (gameWindow.ShowDialog() == true)
+            {
+
+            }
+
+            this.Visibility = Visibility.Visible;
         }
     }
 }

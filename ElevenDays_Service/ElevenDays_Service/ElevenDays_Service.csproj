@@ -57,6 +57,10 @@
       <Project>{930C43CD-175D-4B7F-855C-B574EB31BDFB}</Project>
       <Name>DAL_User</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PlayerCordons\PlayerCordons.csproj">
+      <Project>{882E0908-75BA-4232-AB4D-6F25899CDFA4}</Project>
+      <Name>PlayerCordons</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
