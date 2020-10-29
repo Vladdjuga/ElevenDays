@@ -14,8 +14,11 @@ namespace ElevenDays_Service
     public interface IElevenDays_GameService
     {
         // метод будет подбирать для игрока подходящую игру
-        [OperationContract(IsOneWay = false)]
+        [OperationContract]
         PlayerInfo Start(User user);
+        // метод будет подбирать для игрока подходящую игру
+        [OperationContract]
+        PlayerInfo StartTest();
         // метод будет удалять игрока из игры в которой он находится
         [OperationContract(IsOneWay = true)]
         void End(User user);

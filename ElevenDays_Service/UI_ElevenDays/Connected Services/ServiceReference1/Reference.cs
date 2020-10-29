@@ -132,6 +132,12 @@ namespace UI_ElevenDays.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/Start", ReplyAction="http://tempuri.org/IElevenDays_GameService/StartResponse")]
         System.Threading.Tasks.Task<UI_ElevenDays.ServiceReference1.PlayerInfo> StartAsync(DLL_User.User user);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/StartTest", ReplyAction="http://tempuri.org/IElevenDays_GameService/StartTestResponse")]
+        UI_ElevenDays.ServiceReference1.PlayerInfo StartTest();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/StartTest", ReplyAction="http://tempuri.org/IElevenDays_GameService/StartTestResponse")]
+        System.Threading.Tasks.Task<UI_ElevenDays.ServiceReference1.PlayerInfo> StartTestAsync();
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/End")]
         void End(DLL_User.User user);
         
@@ -178,6 +184,14 @@ namespace UI_ElevenDays.ServiceReference1 {
         
         public System.Threading.Tasks.Task<UI_ElevenDays.ServiceReference1.PlayerInfo> StartAsync(DLL_User.User user) {
             return base.Channel.StartAsync(user);
+        }
+        
+        public UI_ElevenDays.ServiceReference1.PlayerInfo StartTest() {
+            return base.Channel.StartTest();
+        }
+        
+        public System.Threading.Tasks.Task<UI_ElevenDays.ServiceReference1.PlayerInfo> StartTestAsync() {
+            return base.Channel.StartTestAsync();
         }
         
         public void End(DLL_User.User user) {

@@ -1,5 +1,4 @@
-﻿using DLL_User;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +28,7 @@ namespace UI_ElevenDays
             this.user = user;
 
             ElevenDays_GameServiceClient elevenDays_ServiceClient = new ElevenDays_GameServiceClient();
-            PlayerInfo pi = elevenDays_ServiceClient.Start(user);
+            PlayerInfo pi = elevenDays_ServiceClient.StartTest();
 
             playerInfo = pi;
 

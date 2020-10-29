@@ -77,5 +77,10 @@ namespace ElevenDays_Service
             }
             return pi;
         }
+
+        public PlayerInfo StartTest()
+        {
+            return null;
+        }
     }
 }

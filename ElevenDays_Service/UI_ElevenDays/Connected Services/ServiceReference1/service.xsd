@@ -17,18 +17,30 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="StartTest">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartTestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ElevenDays_Service" minOccurs="0" name="StartTestResult" nillable="true" type="q3:PlayerInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="End">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DLL_User" minOccurs="0" name="user" nillable="true" type="q3:User" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DLL_User" minOccurs="0" name="user" nillable="true" type="q4:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Move">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DLL_User" minOccurs="0" name="user" nillable="true" type="q4:User" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="positionPlayer" type="q5:Position" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DLL_User" minOccurs="0" name="user" nillable="true" type="q5:User" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="positionPlayer" type="q6:Position" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
