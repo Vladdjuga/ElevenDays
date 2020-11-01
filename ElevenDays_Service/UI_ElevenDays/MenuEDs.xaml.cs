@@ -48,11 +48,11 @@ namespace UI_ElevenDays
         {
             this.Visibility = Visibility.Collapsed;
 
-            GameWindow gameWindow = new GameWindow(user);
+            /*WindowGame gameWindow = new WindowGame(user);
             if (gameWindow.ShowDialog() == true)
             {
 
-            }
+            }*/
 
             this.Visibility = Visibility.Visible;
         }
