@@ -16,7 +16,7 @@
         Title="Eleven Days" Height="450" Width="800">
     <StackPanel Margin="100">
         <DockPanel>
-            <Label Content="Email:"/>
+            <Label Content="Login:"/>
             <TextBox x:Name="tbEmail"/>
         </DockPanel>
         <DockPanel Margin="0,30">

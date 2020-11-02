@@ -1,4 +1,5 @@
 ﻿using DLL_User;
+using ElevenDays_Service.DTOS;
 using PlayerCordons;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,21 @@ namespace ElevenDays_Service
     [ServiceContract]
     public interface IElevenDays_GameService
     {
-        // метод будет подбирать для игрока подходящую игру
+        // метод будет проверять есть ли данный юзер
         [OperationContract(IsOneWay = false)]
-        PlayerInfo Start(User user);
+        UserDTO Login(string login,string password);
+        // метод будет проверять есть ли данный юзер
+        [OperationContract(IsOneWay = false)]
+        bool Register(string login, string email, string password);
+        // метод будет подбирать для игрока подходящую игру , будет возвращать ID комнаты
+        [OperationContract(IsOneWay = false)]
+        string Start(UserDTO userDTO);
         // метод будет удалять игрока из игры в которой он находится
         [OperationContract(IsOneWay = true)]
-        void End(User user);
+        void End(string login);
         // метод будет изменять позицию игрока на ту , которая указана в параметрах
         [OperationContract(IsOneWay = true)]
-        void Move(User user, Position positionPlayer);
+        void Move(string gameid, string login, Position positionPlayer);
     }
 
     [DataContract]
@@ -49,7 +56,23 @@ namespace ElevenDays_Service
     class GameInfo
     {
         // массив игроков с максимальным значением - 10
-        public List<PlayerInfo> Players { get; set; } = new List<PlayerInfo>(10);
+        public List<PlayerInfo> Players { get; set; } = new List<PlayerInfo>(9);
+        // id комнаты
+        public string Id { get; set; }
+
+
+        public static string RandomString(string Alphabet, int Length)
+        {
+            Random ran = new Random();
+            StringBuilder RandomString = new StringBuilder(Length - 1);
+            int Position = 0;
+            for (int i = 0; i < Length; i++)
+            {
+                Position = ran.Next(0, Alphabet.Length - 1);
+                RandomString.Append(Alphabet[Position]);
+            }
+            return RandomString.ToString();
+        }
     }
 
     // этот класс описывает сессию игр
@@ -79,7 +102,6 @@ namespace ElevenDays_Service
         Tomato,
         Mango,
         Kiwi,
-        Grape,
         Carrot,
         Cabbage,
         Eggplant,

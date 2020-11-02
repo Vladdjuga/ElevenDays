@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI_ElevenDays.ServiceReference2;
 
 namespace UI_ElevenDays
 {
@@ -22,20 +23,22 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        Model_Users model_Users;
-        public RegisterWindow(Model_Users model_Users)
+        public RegisterWindow()
         {
             InitializeComponent();
-            this.model_Users = model_Users;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                model_Users.Users.Add(new User() { Login = tbLogin.Text, Email = tbEmail.Text, PasswordHash = Model_Users.GetHash(SHA256.Create(), pbPassword.Password) });
-                model_Users.SaveChanges();
-                DialogResult = true;
+                ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
+                bool v = elevenDays_GameServiceClient.Register(tbLogin.Text, tbEmail.Text, pbPassword.Password);
+
+                if (!v)
+                    MessageBox.Show("This login are already exists!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                else
+                DialogResult = v;
             }
             catch(Exception ex) { MessageBox.Show("Try again!"); }
         }
