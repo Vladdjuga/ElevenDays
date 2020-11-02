@@ -46,7 +46,7 @@ namespace UI_ElevenDays
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
 
             /*WindowGame gameWindow = new WindowGame(user);
             if (gameWindow.ShowDialog() == true)
@@ -54,7 +54,17 @@ namespace UI_ElevenDays
 
             }*/
 
-            this.Visibility = Visibility.Visible;
+            //this.Visibility = Visibility.Visible;
+            /*this.Visibility = Visibility.Collapsed;
+            MenuSelectCharacter mSCh = new MenuSelectCharacter();
+            if (mSCh.ShowDialog() == true)
+            {
+                MessageBox.Show("Success registration!");
+            }
+            mSCh.Visibility = Visibility.Visible;*/
+            this.Visibility = Visibility.Collapsed;
+            MenuSelectCharacter mSCh = new MenuSelectCharacter();
+            mSCh.Show();
         }
     }
 }
