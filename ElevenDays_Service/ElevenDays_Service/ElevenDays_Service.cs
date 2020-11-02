@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
 using DLL_User;
 using ElevenDays_Service.DTOS;
 using PlayerCordons;
@@ -103,7 +103,7 @@ namespace ElevenDays_Service
                     }
                 }
             }
-            if(pi==null)
+            if (pi == null)
             {
                 pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
                 GameInfo gameInfo = new GameInfo() { Id = CreateGameInfoID() };

@@ -62,7 +62,7 @@ namespace UI_ElevenDays
                 MessageBox.Show("Success registration!");
             }
             mSCh.Visibility = Visibility.Visible;*/
-            this.Visibility = Visibility.Collapsed;
+            this.Close();
             MenuSelectCharacter mSCh = new MenuSelectCharacter();
             mSCh.Show();
         }
