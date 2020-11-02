@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI_ElevenDays.ServiceReference2;
 
 namespace UI_ElevenDays
 {
@@ -20,8 +21,8 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MenuEDs : Window
     {
-        User user = new User();
-        public MenuEDs(User user)
+        UserDTO user = new UserDTO();
+        public MenuEDs(UserDTO user)
         {
             InitializeComponent();
             this.user = user;
@@ -46,15 +47,15 @@ namespace UI_ElevenDays
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            //this.Visibility = Visibility.Collapsed;
 
-            /*WindowGame gameWindow = new WindowGame(user);
-            if (gameWindow.ShowDialog() == true)
-            {
+            ///*WindowGame gameWindow = new WindowGame(user);
+            //if (gameWindow.ShowDialog() == true)
+            //{
 
-            }*/
+            //}*/
 
-            this.Visibility = Visibility.Visible;
+            //this.Visibility = Visibility.Visible;
         }
     }
 }

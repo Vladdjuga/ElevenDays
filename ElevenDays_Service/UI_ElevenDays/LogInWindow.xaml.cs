@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI_ElevenDays.ServiceReference2;
 
 namespace UI_ElevenDays
 {
@@ -22,23 +23,23 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MainWindow : Window
     {
-        Model_Users model_Users;
         public MainWindow()
         {
             InitializeComponent();
-            model_Users = new Model_Users();
-            model_Users.Users.Any();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
 
-            string hash = Model_Users.GetHash(SHA256.Create(), tbPassword.Password);
-            if (model_Users.Users.Any(el => el.Email == tbEmail.Text && el.PasswordHash == hash))
+            ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
+            UserDTO userDTO=elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
+            if (userDTO != null)
             {
-                MenuEDs menuWindow = new MenuEDs(model_Users.Users.FirstOrDefault(el => el.Email == tbEmail.Text && el.PasswordHash == hash));
-                if(menuWindow.ShowDialog()==true);
+                MenuEDs menuWindow = new MenuEDs(userDTO);
+                menuWindow.Show();
+                this.Close();
+                return;
             }
             this.Visibility = Visibility.Visible;
         }
@@ -46,7 +47,7 @@ namespace UI_ElevenDays
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
-            RegisterWindow registerWindow = new RegisterWindow(model_Users);
+            RegisterWindow registerWindow = new RegisterWindow();
             if (registerWindow.ShowDialog() == true)
             {
                 MessageBox.Show("Success registration!");
