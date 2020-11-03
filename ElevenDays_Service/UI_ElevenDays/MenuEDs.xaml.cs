@@ -39,6 +39,10 @@ namespace UI_ElevenDays
             
             
         }
+        private void btnEx_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
 
         private void btnOpt_Click(object sender, RoutedEventArgs e)
         {
@@ -67,5 +71,6 @@ namespace UI_ElevenDays
             MenuSelectCharacter mSCh = new MenuSelectCharacter();
             mSCh.Show();
         }
+
     }
 }

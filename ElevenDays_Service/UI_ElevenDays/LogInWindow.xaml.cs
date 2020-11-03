@@ -26,6 +26,7 @@ namespace UI_ElevenDays
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -42,6 +43,8 @@ namespace UI_ElevenDays
                 return;
             }
             this.Visibility = Visibility.Visible;
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -53,6 +56,13 @@ namespace UI_ElevenDays
                 MessageBox.Show("Success registration!");
             }
             this.Visibility=Visibility.Visible;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            WindowGame wd = new WindowGame();
+            this.Close();
+            wd.Show();
         }
     }
 }

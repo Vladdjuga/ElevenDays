@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
         Title="MenuSelectCharacter" Height="450" Width="800">
-    <Grid>
+    <Grid Background="DarkGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Label Foreground="Black" Content="Select Character" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+        <Label Foreground="Black" Content="Select Character" FontSize="45" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Chiller"></Label>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

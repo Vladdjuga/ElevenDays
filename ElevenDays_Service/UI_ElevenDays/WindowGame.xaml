@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="WindowGame" Height="450" Width="800">
-    <Canvas>
-        
+    <Canvas KeyDown="Canvas_KeyDown">
+        <Label Name="Ch" Width="100" Height="130" Canvas.Left="100" Canvas.Top="100">
+            <Label.Background>
+                <ImageBrush ImageSource="BananaCh2.png"/>
+            </Label.Background>
+        </Label>
         
     </Canvas>
 </Window>

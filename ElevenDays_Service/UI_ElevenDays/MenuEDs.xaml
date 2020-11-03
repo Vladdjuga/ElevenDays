@@ -15,17 +15,6 @@
      FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MenuEDs" Height="450" Width="800">
 
-    <!--<Window.Resources>
-        <Style x:Key="btnStTr" TargetType="Button">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="OrangeRed" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>-->
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -37,7 +26,7 @@
         </Grid.Background>
         <Button Name="btnStart" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="0" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Start" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnStart_MouseMove" Click="btnStart_Click"/>
         <Button Name="btnOpt" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="1" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Options" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnOpt_MouseMove" Click="btnOpt_Click"/>
-        <Button Name="btnEx" materialDesign:ButtonAssist.CornerRadius="25"  Grid.Row="2" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Exit" Opacity="0.85" Height="Auto" FontFamily="Chiller"/>
+        <Button Name="btnEx" materialDesign:ButtonAssist.CornerRadius="25"  Grid.Row="2" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Exit" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnEx_MouseMove"/>
 
 
     </Grid>
