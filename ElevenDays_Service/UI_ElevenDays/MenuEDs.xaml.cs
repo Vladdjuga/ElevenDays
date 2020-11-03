@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI_ElevenDays.ServiceReference2;
 
 namespace UI_ElevenDays
 {
@@ -20,8 +21,8 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MenuEDs : Window
     {
-        User user = new User();
-        public MenuEDs(User user)
+        UserDTO user = new UserDTO();
+        public MenuEDs(UserDTO user)
         {
             InitializeComponent();
             this.user = user;
