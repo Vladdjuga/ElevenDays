@@ -23,12 +23,23 @@ namespace ElevenDays_Service
         // метод будет подбирать для игрока подходящую игру , будет возвращать ID комнаты
         [OperationContract(IsOneWay = false)]
         string Start(UserDTO userDTO);
+        // запускает игрока по ID комнаты
+        [OperationContract(IsOneWay = false)]
+        bool StartByGameID(string gameid, UserDTO userDTO);
         // метод будет удалять игрока из игры в которой он находится
         [OperationContract(IsOneWay = true)]
         void End(string login);
         // метод будет изменять позицию игрока на ту , которая указана в параметрах
         [OperationContract(IsOneWay = true)]
         void Move(string gameid, string login, Position positionPlayer);
+        // метод получения всех наявных игр
+        [OperationContract(IsOneWay = false)]
+        List<GameInfo> GetGames(int count);
+        // метод получения всех наявных игр
+        [OperationContract(IsOneWay = false)]
+        string CreateGame();
+        [OperationContract(IsOneWay = false)]
+        List<PlayerInfo> GetPlayersByGameID(string id);
     }
 
     [DataContract]
@@ -52,11 +63,15 @@ namespace ElevenDays_Service
         public bool IsImposter { get; set; }
     }
 
+    [DataContract]
     // этот класс описывает игру с игроками
-    class GameInfo
+    public class GameInfo
     {
+        [DataMember]
         // массив игроков с максимальным значением - 10
         public List<PlayerInfo> Players { get; set; } = new List<PlayerInfo>(9);
+
+        [DataMember]
         // id комнаты
         public string Id { get; set; }
 
@@ -78,8 +93,8 @@ namespace ElevenDays_Service
     // этот класс описывает сессию игр
     class Session
     {
-        // массив в котором есть запущеные игры , с вместительством - 1024
-        public List<GameInfo> Games { get; set; } = new List<GameInfo>(1024);
+        // массив в котором есть запущеные игры
+        public List<GameInfo> Games { get; set; } = new List<GameInfo>();
         // метод который проверяет есть ли указаный пользователь в игре
         public bool IsContainsUser(User user)
         {
