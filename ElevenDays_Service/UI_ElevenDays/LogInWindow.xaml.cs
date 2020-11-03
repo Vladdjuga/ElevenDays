@@ -33,7 +33,7 @@ namespace UI_ElevenDays
             this.Visibility = Visibility.Collapsed;
 
             ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
-            UserDTO userDTO=elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
+            UserDTO userDTO = elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
             if (userDTO != null)
             {
                 MenuEDs menuWindow = new MenuEDs(userDTO);
