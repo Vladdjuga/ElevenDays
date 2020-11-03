@@ -28,18 +28,6 @@ namespace UI_ElevenDays
             this.user = user;
         }
 
-
-        private void btnStart_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        private void btnOpt_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-            
-        }
-
         private void btnOpt_Click(object sender, RoutedEventArgs e)
         {
 
@@ -63,9 +51,11 @@ namespace UI_ElevenDays
                 MessageBox.Show("Success registration!");
             }
             mSCh.Visibility = Visibility.Visible;*/
+            SelectGameWindow selectGameWindow = new SelectGameWindow(user);
+            selectGameWindow.Show();
             this.Close();
-            MenuSelectCharacter mSCh = new MenuSelectCharacter();
-            mSCh.Show();
+            //MenuSelectCharacter mSCh = new MenuSelectCharacter();
+            //mSCh.Show();
         }
     }
 }

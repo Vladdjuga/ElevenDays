@@ -10,4 +10,12 @@
     <xs:sequence />
   </xs:complexType>
   <xs:element name="Position" nillable="true" type="tns:Position" />
+  <xs:complexType name="Hitbox">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Hitbox" nillable="true" type="tns:Hitbox" />
+  <xs:complexType name="Model">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="Model" nillable="true" type="tns:Model" />
 </xs:schema>

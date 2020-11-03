@@ -27,6 +27,8 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="cfc02ce3-b07b-45db-a833-b77329470f14" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
     <MetadataFile FileName="ElevenDays_Service.DTOS.xsd" MetadataType="Schema" ID="1e866ce2-0a60-418a-8df4-74f4836519bc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
     <MetadataFile FileName="PlayerCordons.xsd" MetadataType="Schema" ID="fce0185f-1f3e-4682-953e-7fc507f4c4d8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="ElevenDays_Service.xsd" MetadataType="Schema" ID="c222d37c-d66d-46ea-a3c4-e41a2730c09f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
+    <MetadataFile FileName="DLL_User.xsd" MetadataType="Schema" ID="68dd6f99-cdca-427b-84cb-fd388a96823b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ElevenDays_Service/ElevenDays_Service/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -14,7 +14,7 @@ using System.Text;
 
 namespace ElevenDays_Service
 {
-    // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени класса "Service1" в коде и файле конфигурации.
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -115,6 +115,21 @@ namespace ElevenDays_Service
             return "";
         }
 
+        public bool StartByGameID(string gameid, UserDTO userDTO)
+        {
+            PlayerInfo pi = null;
+            User user = mapperFrom.Map<User>(userDTO);
+            GameInfo gameInfo = GetGameInfoByID(gameid);
+
+            if (gameInfo != null)
+            {
+                pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                gameInfo.Players.Add(pi);
+                return true;
+            }
+            return false;
+        }
+
         private string CreateGameInfoID()
         {
             string id = GameInfo.RandomString("ABCDEFGHTUQINMLOP", 5);
@@ -123,6 +138,32 @@ namespace ElevenDays_Service
                 id = GameInfo.RandomString("ABCDEFGHTUQINMLOP", 5);
             }
             return id;
+        }
+        private GameInfo GetGameInfoByID(string id)
+        {
+            foreach (var item in session.Games)
+            {
+                if (item.Id == id)
+                    return item;
+            }
+            return null;
+        }
+
+        public List<GameInfo> GetGames(int count)
+        {
+            return session.Games.Take(count).ToList();
+        }
+
+        public string CreateGame()
+        {
+            GameInfo gameInfo = new GameInfo() { Id = CreateGameInfoID() };
+            session.Games.Add(gameInfo);
+            return gameInfo.Id;
+        }
+
+        public List<PlayerInfo> GetPlayersByGameID(string id)
+        {
+            return GetGameInfoByID(id).Players;
         }
     }
 }

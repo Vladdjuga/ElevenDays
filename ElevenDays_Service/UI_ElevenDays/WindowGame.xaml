@@ -8,7 +8,9 @@
         WindowState="Maximized"
         Title="WindowGame" Height="450" Width="800">
     <Canvas>
-        
-        
+        <DockPanel Width="793" Height="421">
+            <TextBlock Name="tbGame" DockPanel.Dock="Bottom" HorizontalAlignment="Center"/>
+            <ListBox x:Name="lbPlayers"/>
+        </DockPanel>
     </Canvas>
 </Window>
