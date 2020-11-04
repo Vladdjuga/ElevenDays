@@ -21,9 +21,11 @@ namespace UI_ElevenDays.Controls
     /// </summary>
     public partial class FruitControl : UserControl
     {
-        public FruitControl(string imageSrc,Position position)
+        public FruitControl(string imageSrc,Position position,string login)
         {
             InitializeComponent();
+
+            lblName.Content = login;
 
             imgBrush.ImageSource = new BitmapImage(new Uri(imageSrc,UriKind.Relative));
             Canvas.SetLeft(this, position.X);

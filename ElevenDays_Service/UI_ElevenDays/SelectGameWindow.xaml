@@ -20,11 +20,17 @@
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Width="80" Height="60" Margin="0,0,500,0" MouseDown="Border_MouseDown">
+        <!--<Border Width="80" Height="60" Margin="0,0,500,0" MouseDown="Border_MouseDown">
             <Border.Background>
                 <ImageBrush ImageSource="Без имени-3.png"/>
             </Border.Background>
-        </Border>
+        </Border>-->
+        <DockPanel LastChildFill="False">
+            <Button Width="80" Height="60" Click="Button_Click_2" Content="Create" Margin="20,0"/>
+            <Button Width="110" Height="60" Click="Button_Click_3" Content="Join random" Margin="10,0"/>
+            <Button Width="110" Height="60" Click="Button_Click_4" Content="Join" Margin="20,0"/>
+        </DockPanel>
+        
         <DockPanel Margin="100,0" Grid.Row="1">
             <Border Width="125" Height="125" BorderBrush="{x:Null}" Style="{x:Null}" DockPanel.Dock="Right" MouseDown="Button_Click">
                 <Border.Background>
@@ -35,10 +41,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                        <TextBlock DockPanel.Dock="Top">
-                        <Run Text="Players : "/>
-                        <Run Text="{Binding Players.Count}"/>
-                        <Run Text="/9"/>
+                            <TextBlock DockPanel.Dock="Top">
+                        <Run Text="{Binding Id}"/>
                             </TextBlock>
                         <TextBlock Text="Default map" DockPanel.Dock="Bottom"/>
                     </DockPanel>
@@ -53,7 +57,7 @@
                 </Border.Background>
             </Border>
             <Border>
-                <TextBox/>
+                <TextBox Name="tbCode"/>
             </Border>
         </DockPanel>
     </Grid>

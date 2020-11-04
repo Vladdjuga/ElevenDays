@@ -31,6 +31,8 @@ namespace UI_ElevenDays
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
             soundPlay.Play();
             this.user = user;
+
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
         }
 
 
@@ -90,18 +92,9 @@ namespace UI_ElevenDays
         CallbackHandler callbackHandler = new CallbackHandler();
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
-
-            string game=elevenDays_GameServiceClient.CreateGame();
-            if (elevenDays_GameServiceClient.StartByGameID(game, user))
-            {
-                WindowGame windowGame = new WindowGame(user,game);
-                windowGame.Show();
-                this.Close();
-                //MenuSelectCharacter mSCh = new MenuSelectCharacter();
-                //mSCh.Show();
-                //this.Close();
-            }
+            SelectGameWindow selectGameWindow = new SelectGameWindow(user);
+            selectGameWindow.Show();
+            this.Close();
         }
 
     }

@@ -14,7 +14,7 @@ using System.Text;
 namespace ElevenDays_Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
-                     ConcurrencyMode = ConcurrencyMode.Single)]
+                     ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -24,6 +24,8 @@ namespace ElevenDays_Service
 
         public ElevenDays_GameService()
         {
+            model_Users.Users.Any();
+
             mapperTo = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>()));
             mapperFrom = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>()));
         }
@@ -102,7 +104,7 @@ namespace ElevenDays_Service
                     {
                         pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
                         game.Players.Add(pi);
-                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login,pi.Player_Fruit);
+                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login);
                         return game.Id;
                     }
                 }
@@ -152,9 +154,9 @@ namespace ElevenDays_Service
             return null;
         }
 
-        public List<GameInfo> GetGames(int count)
+        public Session GetGames()
         {
-            return session.Games.Take(count).ToList();
+            return session;
         }
 
         public string CreateGame()
@@ -164,9 +166,32 @@ namespace ElevenDays_Service
             return gameInfo.Id;
         }
 
-        public List<PlayerInfo> GetPlayersByGameID(string id)
+        public GameInfo GetGame(int ind)
         {
-            return GetGameInfoByID(id).Players;
+            return session.Games[ind];
+        }
+
+        public int GetGamesCount()
+        {
+            return session.Games.Count;
+        }
+
+        public PlayerInfo GetPlayer(string game, int ind)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players[ind];
+        }
+
+        public int GetPlayersCount(string game)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players.Count;
+        }
+
+        public string GetPlayerString(string game, int ind)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players[ind].User.Login;
         }
     }
 }

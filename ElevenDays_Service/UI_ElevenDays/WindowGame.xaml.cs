@@ -34,16 +34,35 @@ namespace UI_ElevenDays
         {
             InitializeComponent();
 
+            tbCode.Text = game;
+
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callback));
 
             this.user = user;
             this.game = game;
 
-            fruitControl = new FruitControl("Images/BananaCh2.png",new Position() { X=0, Y=500 });
-            fruitControl.Tag = game;
+            for (int i = 0; i < elevenDays_GameServiceClient.GetPlayersCount(game); i++)
+            {
+                string str = elevenDays_GameServiceClient.GetPlayerString(game, i);
+                if(str!=user.Login)
+                Callback_NewPlayerArrivedEvent(new Position() { X = 0, Y = 500 }, str);
+            }
+
+            fruitControl = new FruitControl("Images/BananaCh2.png",new Position() { X=0, Y=500 },user.Login);
+            fruitControl.Tag = user.Login;
 
             callback.MoveEvent += Callback_MoveEvent;
+            callback.NewPlayerArrivedEvent += Callback_NewPlayerArrivedEvent;
             canvas.Children.Add(fruitControl);
+        }
+
+        private void Callback_NewPlayerArrivedEvent(Position position, string login)
+        {
+            FruitControl fruitControl = new FruitControl("Images/BananaCh2.png", position,login);
+            fruitControl.Tag = login;
+
+            canvas.Children.Add(fruitControl);
+            fruitControls.Add(fruitControl);
         }
 
         private void Callback_MoveEvent(Position position, string login)

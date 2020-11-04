@@ -11,5 +11,6 @@
         KeyDown="Canvas_KeyDown"
         >
     <Canvas x:Name="canvas">
+        <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5"/>
     </Canvas>
 </Window>

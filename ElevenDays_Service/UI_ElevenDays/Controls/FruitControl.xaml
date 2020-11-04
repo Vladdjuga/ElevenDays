@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI_ElevenDays.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="130" d:DesignWidth="100">
-    <Grid>
+             mc:Ignorable="d" d:DesignWidth="100" Height="155">
+    <DockPanel>
+        <Label Content="SampleText" Name="lblName" DockPanel.Dock="Top" Foreground="#DD000000" FontFamily="Yu Gothic UI Semibold"/>
         <Border Name="Ch" Width="100" Height="130">
             <Border.Background>
                 <ImageBrush x:Name="imgBrush"/>
             </Border.Background>
         </Border>
-    </Grid>
+    </DockPanel>
 </UserControl>

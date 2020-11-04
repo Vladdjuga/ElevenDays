@@ -34,30 +34,42 @@ namespace ElevenDays_Service
         void Move(string gameid, string login, Position positionPlayer);
         // метод получения всех наявных игр
         [OperationContract(IsOneWay = false)]
-        List<GameInfo> GetGames(int count);
+        GameInfo GetGame(int ind);
+        // метод получения количевства игр
+        [OperationContract(IsOneWay = false)]
+        int GetGamesCount();
+        // метод получения количевства игроков в игре
+        [OperationContract(IsOneWay = false)]
+        int GetPlayersCount(string game);
+        // метод получения всех игроков в введеной игре
+        [OperationContract(IsOneWay = false)]
+        PlayerInfo GetPlayer(string game,int ind);
+        // метод получения всех игроков в введеной игре
+        [OperationContract(IsOneWay = false)]
+        string GetPlayerString(string game, int ind);
         // метод получения всех наявных игр
         [OperationContract(IsOneWay = false)]
         string CreateGame();
-        [OperationContract(IsOneWay = false)]
-        List<PlayerInfo> GetPlayersByGameID(string id);
     }
 
     public interface ICallback
     {
-        //[OperationContract(IsOneWay = true)]
-        //void StartGame(bool isX, string opponent);
-
         [OperationContract(IsOneWay = true)]
         void GetMove(Position position,string login);
 
         [OperationContract(IsOneWay = true)]
-        void NewPlayerArrived(Position position, string login,Player_Fruit player_Fruit);
+        void GetNewPlayerArrived(Position position, string login);
     }
 
     [DataContract]
     // этот класс описывает игрока
     public class PlayerInfo
     {
+        public PlayerInfo()
+        {
+            Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
+        }
+
         // информация об игроке из базы данныъ
         [DataMember]
         public User User { get; set; }
@@ -81,7 +93,7 @@ namespace ElevenDays_Service
     // этот класс описывает игру с игроками
     public class GameInfo
     {
-        [DataMember]
+        //[DataMember]
         // массив игроков с максимальным значением - 10
         public List<PlayerInfo> Players { get; set; } = new List<PlayerInfo>(9);
 
@@ -112,20 +124,22 @@ namespace ElevenDays_Service
             }
         }
 
-        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login, Player_Fruit player_Fruit)
+        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login)
         {
             foreach (var item in Players)
             {
                 if (item.User.Login != login)
-                    item.Callback.NewPlayerArrived(startPosition, login, player_Fruit);
+                    item.Callback.GetNewPlayerArrived(startPosition, login);
             }
         }
     }
 
+    [DataContract]
     // этот класс описывает сессию игр
-    class Session
+    public class Session
     {
         // массив в котором есть запущеные игры
+        [DataMember]
         public List<GameInfo> Games { get; set; } = new List<GameInfo>();
         // метод который проверяет есть ли указаный пользователь в игре
         public bool IsContainsUser(User user)

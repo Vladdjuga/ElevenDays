@@ -21,35 +21,80 @@ namespace UI_ElevenDays
     public partial class SelectGameWindow : Window
     {
         UserDTO userDTO;
-        ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
+        CallbackHandler callback = new CallbackHandler();
+        ElevenDays_GameServiceClient elevenDays_GameServiceClient;
         public SelectGameWindow(UserDTO userDTO)
         {
             InitializeComponent();
             this.userDTO = userDTO;
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callback));
 
+            SetGames();
+        }
+
+        private void SetGames()
+        {
+            List<GameInfo> gameInfos = new List<GameInfo>();
+            for (int i = 0; i < elevenDays_GameServiceClient.GetGamesCount(); i++)
+            {
+                gameInfos.Add(elevenDays_GameServiceClient.GetGame(i));
+            }
+            listBox.ItemsSource = gameInfos;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GameInfo[] gameInfos = elevenDays_GameServiceClient.GetGames(6);
-            listBox.ItemsSource = gameInfos;
+            SetGames();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            if (elevenDays_GameServiceClient.StartByGameID(tbCode.Text, userDTO))
+            {
+                WindowGame gameWindow = new WindowGame(userDTO, tbCode.Text);
+                gameWindow.Show();
+                this.Close();
+            }
         }
 
         string game = "";
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             game = elevenDays_GameServiceClient.CreateGame();
 
-            if(elevenDays_GameServiceClient.StartByGameID(game, userDTO))
+            if (elevenDays_GameServiceClient.StartByGameID(game, userDTO))
             {
-                WindowGame gameWindow = new WindowGame(game, userDTO);
+                WindowGame gameWindow = new WindowGame(userDTO, game);
                 gameWindow.Show();
                 this.Close();
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            string start = elevenDays_GameServiceClient.Start(userDTO);
+            if (start != "")
+            {
+                WindowGame gameWindow = new WindowGame(userDTO, start);
+                gameWindow.Show();
+                this.Close();
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (listBox.SelectedItem != null)
+            {
+
+                GameInfo gameInfo = listBox.SelectedItem as GameInfo;
+
+                if (elevenDays_GameServiceClient.StartByGameID(gameInfo.Id, userDTO))
+                {
+                    WindowGame gameWindow = new WindowGame(userDTO, gameInfo.Id);
+                    gameWindow.Show();
+                    this.Close();
+                }
             }
         }
     }
