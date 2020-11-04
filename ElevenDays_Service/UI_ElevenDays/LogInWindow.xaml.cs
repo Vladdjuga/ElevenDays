@@ -37,7 +37,7 @@ namespace UI_ElevenDays
             UserDTO userDTO = elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
             if (userDTO != null)
             {
-                MenuEDs menuWindow = new MenuEDs(userDTO);
+                MenuEDs menuWindow = new MenuEDs(/*userDTO*/);
                 menuWindow.Show();
                 this.Close();
                 return;
@@ -60,9 +60,11 @@ namespace UI_ElevenDays
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            WindowGame wd = new WindowGame();
+            /*MenuEDs wd = new MenuEDs();
             this.Close();
-            wd.Show();
+            wd.Show();*/
+            new MenuEDs().Show();
+            this.Close();
         }
     }
 }

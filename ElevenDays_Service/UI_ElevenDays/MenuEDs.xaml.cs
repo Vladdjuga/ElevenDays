@@ -1,7 +1,9 @@
 ﻿using DLL_User;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,32 +23,67 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MenuEDs : Window
     {
-        UserDTO user = new UserDTO();
-        public MenuEDs(UserDTO user)
+        public MediaPlayer soundPlay = new MediaPlayer();
+        //UserDTO user = new UserDTO();
+        public MenuEDs(/*UserDTO user*/)
         {
             InitializeComponent();
-            this.user = user;
+            soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
+            soundPlay.Play();
+            //this.user = user;
         }
 
 
         private void btnStart_MouseMove(object sender, MouseEventArgs e)
         {
-            
+            ImageBrush imB = new ImageBrush();
+            BitmapImage bit = new BitmapImage();
+            bit.BeginInit();
+            bit.UriSource = new Uri("Images/StartImEDs.png", UriKind.Relative);
+            bit.EndInit();
+            imB.Stretch = Stretch.Fill;
+            imB.ImageSource = bit;
+            grid.Background = imB;
+
+            soundPlay.Open(new Uri(@"Sound/Scarry Voise to Start btn.mp3", UriKind.Relative));
+            soundPlay.Volume = 0.05;
+            soundPlay.Play();
         }
 
         private void btnOpt_MouseMove(object sender, MouseEventArgs e)
         {
-            
-            
+            ImageBrush imB = new ImageBrush();
+            BitmapImage bit = new BitmapImage();
+            bit.BeginInit();
+            bit.UriSource = new Uri("Images/MenuOptions.png", UriKind.Relative);
+            bit.EndInit();
+            imB.Stretch = Stretch.Fill;
+            imB.ImageSource = bit;
+            grid.Background = imB;
+
+            soundPlay.Open(new Uri(@"Sound/Voise to Option btn.mp3", UriKind.Relative));
+            soundPlay.Volume = 0.5;
+            soundPlay.Play();
         }
         private void btnEx_MouseMove(object sender, MouseEventArgs e)
         {
+            ImageBrush imB = new ImageBrush();
+            BitmapImage bit = new BitmapImage();
+            bit.BeginInit();
+            bit.UriSource = new Uri("Images/ExitBackground.png", UriKind.Relative);
+            bit.EndInit();
+            imB.Stretch = Stretch.Fill;
+            imB.ImageSource = bit;
+            grid.Background = imB;
 
+            soundPlay.Open(new Uri(@"Sound/Scary Voise to Exit btn.mp3", UriKind.Relative));
+            soundPlay.Volume = 1;
+            soundPlay.Play();
         }
 
         private void btnOpt_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)

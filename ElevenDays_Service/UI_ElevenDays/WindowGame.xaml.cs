@@ -30,7 +30,7 @@ namespace UI_ElevenDays
 
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show("Azazaza2");
+            
             if(e.Key == Key.Up)
             {
                 MessageBox.Show(e.Key.ToString());
