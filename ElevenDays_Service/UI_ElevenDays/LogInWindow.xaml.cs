@@ -23,17 +23,20 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MainWindow : Window
     {
+        CallbackHandler callbackHandler = new CallbackHandler();
+        ElevenDays_GameServiceClient elevenDays_GameServiceClient;
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
         }
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
 
-            ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
             UserDTO userDTO = elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
             if (userDTO != null)
             {
@@ -60,9 +63,9 @@ namespace UI_ElevenDays
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            WindowGame wd = new WindowGame();
-            this.Close();
-            wd.Show();
+            //WindowGame wd = new WindowGame();
+            //this.Close();
+            //wd.Show();
         }
     }
 }

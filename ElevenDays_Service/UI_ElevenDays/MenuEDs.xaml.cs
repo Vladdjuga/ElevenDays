@@ -49,27 +49,22 @@ namespace UI_ElevenDays
 
         }
 
+        ElevenDays_GameServiceClient elevenDays_GameServiceClient;
+        CallbackHandler callbackHandler = new CallbackHandler();
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            //this.Visibility = Visibility.Collapsed;
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
 
-            /*WindowGame gameWindow = new WindowGame(user);
-            if (gameWindow.ShowDialog() == true)
+            string game=elevenDays_GameServiceClient.CreateGame();
+            if (elevenDays_GameServiceClient.StartByGameID(game, user))
             {
-
-            }*/
-
-            //this.Visibility = Visibility.Visible;
-            /*this.Visibility = Visibility.Collapsed;
-            MenuSelectCharacter mSCh = new MenuSelectCharacter();
-            if (mSCh.ShowDialog() == true)
-            {
-                MessageBox.Show("Success registration!");
+                WindowGame windowGame = new WindowGame(user,game);
+                windowGame.Show();
+                this.Close();
+                //MenuSelectCharacter mSCh = new MenuSelectCharacter();
+                //mSCh.Show();
+                //this.Close();
             }
-            mSCh.Visibility = Visibility.Visible;*/
-            this.Close();
-            MenuSelectCharacter mSCh = new MenuSelectCharacter();
-            mSCh.Show();
         }
 
     }

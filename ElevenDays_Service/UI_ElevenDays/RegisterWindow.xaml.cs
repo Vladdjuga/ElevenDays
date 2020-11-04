@@ -23,16 +23,19 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        CallbackHandler callbackHandler = new CallbackHandler();
+        ElevenDays_GameServiceClient elevenDays_GameServiceClient;
         public RegisterWindow()
         {
             InitializeComponent();
+
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
                 bool v = elevenDays_GameServiceClient.Register(tbLogin.Text, tbEmail.Text, pbPassword.Password);
 
                 if (!v)
