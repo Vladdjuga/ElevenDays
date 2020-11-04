@@ -22,10 +22,10 @@ namespace UI_ElevenDays
         public WindowGame()
         {
             InitializeComponent();
-            for (int i = 0; i < 50; i++)
+            /*for (int i = 0; i < 50; i++)
             {
                 Canvas.SetTop(Ch, Canvas.GetTop(Ch) + 10);
-            }
+            }*/
         }
 
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
@@ -33,23 +33,23 @@ namespace UI_ElevenDays
             
             if(e.Key == Key.Up)
             {
-                MessageBox.Show(e.Key.ToString());
-                Canvas.SetTop(Ch, Canvas.GetTop(Ch) + 10);
+                /*MessageBox.Show(e.Key.ToString());
+                Canvas.SetTop(Ch, Canvas.GetTop(Ch) + 10);*/
             }
             if (e.Key == Key.Down)
             {
-                MessageBox.Show(e.Key.ToString());
-                Canvas.SetBottom(Ch, Canvas.GetBottom(Ch) + 10);
+                /*MessageBox.Show(e.Key.ToString());
+                Canvas.SetBottom(Ch, Canvas.GetBottom(Ch) + 10);*/
             }
             if (e.Key == Key.Left)
             {
-                MessageBox.Show(e.Key.ToString());
-                Canvas.SetLeft(Ch, Canvas.GetLeft(Ch) + 10);
+                /*MessageBox.Show(e.Key.ToString());
+                Canvas.SetLeft(Ch, Canvas.GetLeft(Ch) + 10);*/
             }
             if (e.Key == Key.Right)
             {
-                MessageBox.Show(e.Key.ToString());
-                Canvas.SetRight(Ch, Canvas.GetRight(Ch) + 10);
+                /*MessageBox.Show(e.Key.ToString());
+                Canvas.SetRight(Ch, Canvas.GetRight(Ch) + 10);*/
             }
         }
     }

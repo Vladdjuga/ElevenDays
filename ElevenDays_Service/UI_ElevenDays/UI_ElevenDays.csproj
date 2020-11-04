@@ -97,6 +97,9 @@
     <Compile Include="WindowGame.xaml.cs">
       <DependentUpon>WindowGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowSeachMultyPl.xaml.cs">
+      <DependentUpon>WindowSeachMultyPl.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\FruitControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowSeachMultyPl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +234,33 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="BananaCh2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BananaCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="KiwiCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CucumberCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TomatoCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MangoCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="OrangeCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="EggplantCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CabbageCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CarrotCh1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

@@ -30,5 +30,50 @@ namespace UI_ElevenDays
             //windowGame.Show();
             //this.Close();
         }
+
+        private void Button_Click_Banana(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Kiwi(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Cucumber(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Tomato(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Mango(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Orange(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Eggplant(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Cabbage(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_Carrot(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

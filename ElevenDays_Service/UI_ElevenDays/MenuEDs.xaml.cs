@@ -24,13 +24,13 @@ namespace UI_ElevenDays
     public partial class MenuEDs : Window
     {
         public MediaPlayer soundPlay = new MediaPlayer();
-        //UserDTO user = new UserDTO();
-        public MenuEDs(/*UserDTO user*/)
+        UserDTO user = new UserDTO();
+        public MenuEDs(UserDTO user)
         {
             InitializeComponent();
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
             soundPlay.Play();
-            //this.user = user;
+            this.user = user;
         }
 
 
@@ -83,7 +83,7 @@ namespace UI_ElevenDays
 
         private void btnOpt_Click(object sender, RoutedEventArgs e)
         {
-            
+            new MenuOptions().Show();
         }
 
         ElevenDays_GameServiceClient elevenDays_GameServiceClient;
@@ -95,14 +95,18 @@ namespace UI_ElevenDays
             string game=elevenDays_GameServiceClient.CreateGame();
             if (elevenDays_GameServiceClient.StartByGameID(game, user))
             {
-                WindowGame windowGame = new WindowGame(user,game);
+                /*WindowGame windowGame = new WindowGame(user,game);
                 windowGame.Show();
-                this.Close();
+                this.Close();*/
                 //MenuSelectCharacter mSCh = new MenuSelectCharacter();
                 //mSCh.Show();
                 //this.Close();
             }
         }
 
+        private void btnEx_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

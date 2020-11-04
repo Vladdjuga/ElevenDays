@@ -33,15 +33,15 @@ namespace UI_ElevenDays
         {
             this.Visibility = Visibility.Collapsed;
 
-            ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
+            /*ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
             UserDTO userDTO = elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
             if (userDTO != null)
             {
-                MenuEDs menuWindow = new MenuEDs(/*userDTO*/);
+                MenuEDs menuWindow = new MenuEDs(userDTO);
                 menuWindow.Show();
                 this.Close();
                 return;
-            }
+            }*/
             this.Visibility = Visibility.Visible;
 
 
@@ -63,7 +63,7 @@ namespace UI_ElevenDays
             /*MenuEDs wd = new MenuEDs();
             this.Close();
             wd.Show();*/
-            new MenuEDs().Show();
+            new MenuSelectCharacter().Show();
             this.Close();
         }
     }
