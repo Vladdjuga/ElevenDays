@@ -11,7 +11,7 @@ using System.Text;
 
 namespace ElevenDays_Service
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(ICallback))]
     public interface IElevenDays_GameService
     {
         // метод будет проверять есть ли данный юзер
@@ -42,6 +42,18 @@ namespace ElevenDays_Service
         List<PlayerInfo> GetPlayersByGameID(string id);
     }
 
+    public interface ICallback
+    {
+        //[OperationContract(IsOneWay = true)]
+        //void StartGame(bool isX, string opponent);
+
+        [OperationContract(IsOneWay = true)]
+        void GetMove(Position position,string login);
+
+        [OperationContract(IsOneWay = true)]
+        void NewPlayerArrived(Position position, string login,Player_Fruit player_Fruit);
+    }
+
     [DataContract]
     // этот класс описывает игрока
     public class PlayerInfo
@@ -61,6 +73,8 @@ namespace ElevenDays_Service
         // логическая переменная указывающая предатель ли игрок
         [DataMember]
         public bool IsImposter { get; set; }
+
+        public ICallback Callback { get; set; }
     }
 
     [DataContract]
@@ -87,6 +101,24 @@ namespace ElevenDays_Service
                 RandomString.Append(Alphabet[Position]);
             }
             return RandomString.ToString();
+        }
+
+        internal void NotifyAllPlayersAboutMove(Position positionPlayer, string login)
+        {
+            foreach (var item in Players)
+            {
+                if (item.User.Login != login)
+                    item.Callback.GetMove(positionPlayer, login);
+            }
+        }
+
+        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login, Player_Fruit player_Fruit)
+        {
+            foreach (var item in Players)
+            {
+                if (item.User.Login != login)
+                    item.Callback.NewPlayerArrived(startPosition, login, player_Fruit);
+            }
         }
     }
 

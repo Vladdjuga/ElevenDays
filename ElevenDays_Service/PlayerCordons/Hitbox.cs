@@ -22,8 +22,10 @@ namespace PlayerCordons
     public struct Position
     {
         // х в координатной области
+        [DataMember]
         public double X { get; set; }
         // у в координатной области
+        [DataMember]
         public double Y { get; set; }
         // конструктор
         public Position(double x, double y)

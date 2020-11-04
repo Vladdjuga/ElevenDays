@@ -13,7 +13,8 @@ using System.Text;
 
 namespace ElevenDays_Service
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
+                     ConcurrencyMode = ConcurrencyMode.Single)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -67,10 +68,12 @@ namespace ElevenDays_Service
             {
                 if (player.User.Login == login)
                 {
-                    player.Hitbox.StartPosition = positionPlayer;
+                    player.Hitbox.StartPosition = positionPlayer;                 
                     break;
                 }
             }
+            if(gameInfo!=null)
+            gameInfo.NotifyAllPlayersAboutMove(positionPlayer, login);
         }
 
         public bool Register(string login, string email, string password)
@@ -99,6 +102,7 @@ namespace ElevenDays_Service
                     {
                         pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
                         game.Players.Add(pi);
+                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login,pi.Player_Fruit);
                         return game.Id;
                     }
                 }

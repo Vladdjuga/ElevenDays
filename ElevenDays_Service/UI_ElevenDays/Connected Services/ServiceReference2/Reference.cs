@@ -115,12 +115,44 @@ namespace UI_ElevenDays.ServiceReference2 {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double YField;
+        
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
                 return this.extensionDataField;
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
             }
         }
         
@@ -363,7 +395,7 @@ namespace UI_ElevenDays.ServiceReference2 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IElevenDays_GameService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IElevenDays_GameService", CallbackContract=typeof(UI_ElevenDays.ServiceReference2.IElevenDays_GameServiceCallback))]
     public interface IElevenDays_GameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/Login", ReplyAction="http://tempuri.org/IElevenDays_GameService/LoginResponse")]
@@ -422,30 +454,38 @@ namespace UI_ElevenDays.ServiceReference2 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IElevenDays_GameServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetMove")]
+        void GetMove(UI_ElevenDays.ServiceReference2.Position position, string login);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IElevenDays_GameServiceChannel : UI_ElevenDays.ServiceReference2.IElevenDays_GameService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ElevenDays_GameServiceClient : System.ServiceModel.ClientBase<UI_ElevenDays.ServiceReference2.IElevenDays_GameService>, UI_ElevenDays.ServiceReference2.IElevenDays_GameService {
+    public partial class ElevenDays_GameServiceClient : System.ServiceModel.DuplexClientBase<UI_ElevenDays.ServiceReference2.IElevenDays_GameService>, UI_ElevenDays.ServiceReference2.IElevenDays_GameService {
         
-        public ElevenDays_GameServiceClient() {
+        public ElevenDays_GameServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public ElevenDays_GameServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public ElevenDays_GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public ElevenDays_GameServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ElevenDays_GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ElevenDays_GameServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ElevenDays_GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ElevenDays_GameServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public ElevenDays_GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public UI_ElevenDays.ServiceReference2.UserDTO Login(string login1, string password) {

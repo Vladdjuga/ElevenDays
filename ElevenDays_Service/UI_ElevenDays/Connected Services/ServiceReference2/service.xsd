@@ -119,4 +119,12 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMove">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="position" type="q7:Position" />
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

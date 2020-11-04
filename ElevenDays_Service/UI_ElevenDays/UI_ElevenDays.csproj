@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DLL_User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -72,10 +73,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CallbackHandler.cs" />
     <Compile Include="Connected Services\ServiceReference2\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FruitControl.xaml.cs">
+      <DependentUpon>FruitControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenuEDs.xaml.cs">
       <DependentUpon>MenuEDs.xaml</DependentUpon>
@@ -92,6 +97,10 @@
     <Compile Include="WindowGame.xaml.cs">
       <DependentUpon>WindowGame.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\FruitControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LogInWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,7 +152,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\ServiceReference2\DLL_User1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference2\ElevenDays_Service.DTOS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\ElevenDays_Service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference2\PlayerCordons.xsd">
@@ -155,6 +170,12 @@
     </None>
     <None Include="Connected Services\ServiceReference2\service1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.GameInfo1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.PlayerInfo1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
