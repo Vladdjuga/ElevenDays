@@ -24,13 +24,13 @@ namespace UI_ElevenDays
     public partial class MenuEDs : Window
     {
         public MediaPlayer soundPlay = new MediaPlayer();
-        //UserDTO user = new UserDTO();
-        public MenuEDs(/*UserDTO user*/)
+        UserDTO user = new UserDTO();
+        public MenuEDs(UserDTO user)
         {
             InitializeComponent();
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
             soundPlay.Play();
-            //this.user = user;
+            this.user = user;
         }
 
 
@@ -43,7 +43,7 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridВ.Background = imB;
 
             soundPlay.Open(new Uri(@"Sound/Scarry Voise to Start btn.mp3", UriKind.Relative));
             soundPlay.Volume = 0.05;
@@ -59,7 +59,7 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridВ.Background = imB;
 
             soundPlay.Open(new Uri(@"Sound/Voise to Option btn.mp3", UriKind.Relative));
             soundPlay.Volume = 0.5;
@@ -74,7 +74,7 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridВ.Background = imB;
 
             soundPlay.Open(new Uri(@"Sound/Scary Voise to Exit btn.mp3", UriKind.Relative));
             soundPlay.Volume = 1;

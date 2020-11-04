@@ -26,18 +26,20 @@ namespace UI_ElevenDays
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
         }
 
+        CallbackHandler callbackHandler = new CallbackHandler();
+        ElevenDays_GameServiceClient elevenDays_GameServiceClient;
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
 
-            ElevenDays_GameServiceClient elevenDays_GameServiceClient = new ElevenDays_GameServiceClient();
             UserDTO userDTO = elevenDays_GameServiceClient.Login(tbEmail.Text, tbPassword.Password);
             if (userDTO != null)
             {
-                MenuEDs menuWindow = new MenuEDs(/*userDTO*/);
+                MenuEDs menuWindow = new MenuEDs(userDTO);
                 menuWindow.Show();
                 this.Close();
                 return;
@@ -63,8 +65,6 @@ namespace UI_ElevenDays
             /*MenuEDs wd = new MenuEDs();
             this.Close();
             wd.Show();*/
-            new MenuEDs().Show();
-            this.Close();
         }
     }
 }
