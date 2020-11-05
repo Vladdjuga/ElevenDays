@@ -230,6 +230,9 @@ namespace UI_ElevenDays.ServiceReference2 {
         private UI_ElevenDays.ServiceReference2.Model ModelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PlayerStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Player_FruitField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -280,6 +283,19 @@ namespace UI_ElevenDays.ServiceReference2 {
                 if ((object.ReferenceEquals(this.ModelField, value) != true)) {
                     this.ModelField = value;
                     this.RaisePropertyChanged("Model");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PlayerState {
+            get {
+                return this.PlayerStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayerStateField, value) != true)) {
+                    this.PlayerStateField = value;
+                    this.RaisePropertyChanged("PlayerState");
                 }
             }
         }
@@ -413,10 +429,16 @@ namespace UI_ElevenDays.ServiceReference2 {
         System.Threading.Tasks.Task EndAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/Move")]
-        void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer);
+        void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/Move")]
-        System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer);
+        System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/ChangePlayerState")]
+        void ChangePlayerState(string gameid, string login, string currentPlayerState);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/ChangePlayerState")]
+        System.Threading.Tasks.Task ChangePlayerStateAsync(string gameid, string login, string currentPlayerState);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GetGame", ReplyAction="http://tempuri.org/IElevenDays_GameService/GetGameResponse")]
         UI_ElevenDays.ServiceReference2.GameInfo GetGame(int ind);
@@ -453,6 +475,18 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/CreateGame", ReplyAction="http://tempuri.org/IElevenDays_GameService/CreateGameResponse")]
         System.Threading.Tasks.Task<string> CreateGameAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/FindGame", ReplyAction="http://tempuri.org/IElevenDays_GameService/FindGameResponse")]
+        string FindGame();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/FindGame", ReplyAction="http://tempuri.org/IElevenDays_GameService/FindGameResponse")]
+        System.Threading.Tasks.Task<string> FindGameAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/FindGameById", ReplyAction="http://tempuri.org/IElevenDays_GameService/FindGameByIdResponse")]
+        string FindGameById(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/FindGameById", ReplyAction="http://tempuri.org/IElevenDays_GameService/FindGameByIdResponse")]
+        System.Threading.Tasks.Task<string> FindGameByIdAsync(string id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -461,8 +495,14 @@ namespace UI_ElevenDays.ServiceReference2 {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetMove")]
         void GetMove(UI_ElevenDays.ServiceReference2.Position position, string login);
         
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetState")]
+        void GetState(string state, string login);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetNewPlayerArrived")]
         void GetNewPlayerArrived(UI_ElevenDays.ServiceReference2.Position position, string login);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetDisconected")]
+        void GetDisconected(string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -533,12 +573,20 @@ namespace UI_ElevenDays.ServiceReference2 {
             return base.Channel.EndAsync(login);
         }
         
-        public void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer) {
-            base.Channel.Move(gameid, login, positionPlayer);
+        public void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state) {
+            base.Channel.Move(gameid, login, positionPlayer, state);
         }
         
-        public System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer) {
-            return base.Channel.MoveAsync(gameid, login, positionPlayer);
+        public System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state) {
+            return base.Channel.MoveAsync(gameid, login, positionPlayer, state);
+        }
+        
+        public void ChangePlayerState(string gameid, string login, string currentPlayerState) {
+            base.Channel.ChangePlayerState(gameid, login, currentPlayerState);
+        }
+        
+        public System.Threading.Tasks.Task ChangePlayerStateAsync(string gameid, string login, string currentPlayerState) {
+            return base.Channel.ChangePlayerStateAsync(gameid, login, currentPlayerState);
         }
         
         public UI_ElevenDays.ServiceReference2.GameInfo GetGame(int ind) {
@@ -587,6 +635,22 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         public System.Threading.Tasks.Task<string> CreateGameAsync() {
             return base.Channel.CreateGameAsync();
+        }
+        
+        public string FindGame() {
+            return base.Channel.FindGame();
+        }
+        
+        public System.Threading.Tasks.Task<string> FindGameAsync() {
+            return base.Channel.FindGameAsync();
+        }
+        
+        public string FindGameById(string id) {
+            return base.Channel.FindGameById(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> FindGameByIdAsync(string id) {
+            return base.Channel.FindGameByIdAsync(id);
         }
     }
 }

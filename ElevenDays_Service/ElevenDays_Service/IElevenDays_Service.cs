@@ -31,7 +31,9 @@ namespace ElevenDays_Service
         void End(string login);
         // метод будет изменять позицию игрока на ту , которая указана в параметрах
         [OperationContract(IsOneWay = true)]
-        void Move(string gameid, string login, Position positionPlayer);
+        void Move(string gameid, string login, Position positionPlayer,string state);
+        [OperationContract(IsOneWay = true)]
+        void ChangePlayerState(string gameid, string login,string currentPlayerState);
         // метод получения всех наявных игр
         [OperationContract(IsOneWay = false)]
         GameInfo GetGame(int ind);
@@ -50,6 +52,12 @@ namespace ElevenDays_Service
         // метод получения всех наявных игр
         [OperationContract(IsOneWay = false)]
         string CreateGame();
+        //
+        [OperationContract(IsOneWay = false)]
+        string FindGame();
+        //
+        [OperationContract(IsOneWay = false)]
+        string FindGameById(string id);
     }
 
     public interface ICallback
@@ -58,18 +66,19 @@ namespace ElevenDays_Service
         void GetMove(Position position,string login);
 
         [OperationContract(IsOneWay = true)]
+        void GetState(string state, string login);
+
+        [OperationContract(IsOneWay = true)]
         void GetNewPlayerArrived(Position position, string login);
+
+        [OperationContract(IsOneWay = true)]
+        void GetDisconected(string login);
     }
 
     [DataContract]
     // этот класс описывает игрока
     public class PlayerInfo
     {
-        public PlayerInfo()
-        {
-            Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
-        }
-
         // информация об игроке из базы данныъ
         [DataMember]
         public User User { get; set; }
@@ -87,6 +96,9 @@ namespace ElevenDays_Service
         public bool IsImposter { get; set; }
 
         public ICallback Callback { get; set; }
+
+        [DataMember]
+        public string PlayerState { get; set; }
     }
 
     [DataContract]
@@ -113,6 +125,15 @@ namespace ElevenDays_Service
                 RandomString.Append(Alphabet[Position]);
             }
             return RandomString.ToString();
+        }
+
+        internal void NotifyAllPlayersAboutState(string state, string login)
+        {
+            foreach (var item in Players)
+            {
+                if (item.User.Login != login)
+                    item.Callback.GetState(state, login);
+            }
         }
 
         internal void NotifyAllPlayersAboutMove(Position positionPlayer, string login)

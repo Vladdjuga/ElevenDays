@@ -11,12 +11,9 @@ namespace UI_ElevenDays
     {
         public event Action<Position, string> MoveEvent;
         public event Action<Position, string> NewPlayerArrivedEvent;
-        public event Action<GameInfo[]> GamesEvent;
-
-        public void GetGames(GameInfo[] gameInfos)
-        {
-            GamesEvent?.Invoke(gameInfos);
-        }
+        public event Action<string, string> StateEvent;
+        public event Action<string> DisconnectedEvent;
+        public int Count = 0;
 
         public void GetMove(Position position, string login)
         {
@@ -26,6 +23,17 @@ namespace UI_ElevenDays
         public void GetNewPlayerArrived(Position position, string login)
         {
             NewPlayerArrivedEvent?.Invoke(position, login);
+
+        }
+
+        public void GetState(string state, string login)
+        {
+            StateEvent?.Invoke(state, login);
+        }
+
+        public void GetDisconected(string login)
+        {
+            DisconnectedEvent?.Invoke(login);
         }
     }
 }

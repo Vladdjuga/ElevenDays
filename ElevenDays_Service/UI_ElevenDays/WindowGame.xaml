@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:UI_ElevenDays"
         xmlns:controls="clr-namespace:UI_ElevenDays.Controls"
         mc:Ignorable="d"
-        WindowState="Maximized"
-        Title="WindowGame" Height="450" Width="800"
-        KeyDown="Canvas_KeyDown"
+        Title="WindowGame" Height="619.446" Width="1003.123"
+        KeyDown="Canvas_KeyDown" Closed="Window_Closed"
         >
     <Canvas x:Name="canvas">
         <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5"/>
+        <Button Content="Exit" Canvas.Left="922" Canvas.Top="10" FontSize="20" Click="Button_Click"/>
     </Canvas>
 </Window>

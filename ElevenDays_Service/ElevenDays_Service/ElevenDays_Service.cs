@@ -14,7 +14,7 @@ using System.Text;
 namespace ElevenDays_Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
-                     ConcurrencyMode = ConcurrencyMode.Reentrant)]
+                     ConcurrencyMode = ConcurrencyMode.Single)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -49,6 +49,17 @@ namespace ElevenDays_Service
                 }
             }
             deleteGame.Players.Remove(deletePlayer);
+
+            if (deleteGame != null)
+                foreach (var item in deleteGame.Players)
+                {
+                    if (item.User.Login != login)
+                    {
+                        item.Callback.GetDisconected(login);
+                    }
+                }
+            if (deleteGame.Players.Count == 0)
+                session.Games.Remove(deleteGame);
         }
 
         public UserDTO Login(string login, string password)
@@ -63,19 +74,27 @@ namespace ElevenDays_Service
         }
 
         // метод для изменения положения игрока
-        public void Move(string gameid, string login, Position positionPlayer)
+        public void Move(string gameid, string login, Position positionPlayer,string state)
         {
             GameInfo gameInfo = session.Games.FirstOrDefault(el => el.Id == gameid);
             foreach (var player in gameInfo.Players)
             {
                 if (player.User.Login == login)
                 {
-                    player.Hitbox.StartPosition = positionPlayer;                 
+                    player.Hitbox.StartPosition = positionPlayer;
+                    player.PlayerState = state;
                     break;
                 }
             }
-            if(gameInfo!=null)
-            gameInfo.NotifyAllPlayersAboutMove(positionPlayer, login);
+            if (gameInfo != null)
+                foreach (var item in gameInfo.Players)
+                {
+                    if (item.User.Login != login)
+                    {
+                        item.Callback.GetMove(positionPlayer, login);
+                        item.Callback.GetState(state, login);
+                    }
+                }
         }
 
         public bool Register(string login, string email, string password)
@@ -103,6 +122,7 @@ namespace ElevenDays_Service
                     if (game.Players.Count < 10)
                     {
                         pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                        pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                         game.Players.Add(pi);
                         game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login);
                         return game.Id;
@@ -112,6 +132,7 @@ namespace ElevenDays_Service
             if (pi == null)
             {
                 pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                 GameInfo gameInfo = new GameInfo() { Id = CreateGameInfoID() };
                 gameInfo.Players.Add(pi);
                 session.Games.Add(gameInfo);
@@ -129,7 +150,9 @@ namespace ElevenDays_Service
             if (gameInfo != null)
             {
                 pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                 gameInfo.Players.Add(pi);
+                gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login);
                 return true;
             }
             return false;
@@ -192,6 +215,49 @@ namespace ElevenDays_Service
         {
             GameInfo gameInfo = GetGameInfoByID(game);
             return gameInfo.Players[ind].User.Login;
+        }
+
+        public string FindGame()
+        {
+            foreach (var game in session.Games)
+            {
+                if (game.Players.Count < 10)
+                {
+                    return game.Id;
+                }
+            }
+            GameInfo gameInfo = new GameInfo() { Id = CreateGameInfoID() };
+            session.Games.Add(gameInfo);
+            return gameInfo.Id;
+        }
+
+        public string FindGameById(string id)
+        {
+            GameInfo gameInfo = session.Games.First(el => el.Id == id);
+            if (gameInfo == null)
+                return null;
+            return id;
+        }
+
+        public void ChangePlayerState(string gameid, string login, string currentPlayerState)
+        {
+            GameInfo gameInfo = session.Games.FirstOrDefault(el => el.Id == gameid);
+            foreach (var player in gameInfo.Players)
+            {
+                if (player.User.Login == login)
+                {
+                    player.PlayerState = currentPlayerState;
+                    break;
+                }
+            }
+            if (gameInfo != null)
+                foreach (var item in gameInfo.Players)
+                {
+                    if (item.User.Login != login)
+                    {
+                        item.Callback.GetState(currentPlayerState,item.User.Login);
+                    }
+                }
         }
     }
 }

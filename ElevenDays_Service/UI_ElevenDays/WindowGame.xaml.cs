@@ -36,7 +36,16 @@ namespace UI_ElevenDays
 
             tbCode.Text = game;
 
+            callback.Count=100;
+
+            callback.DisconnectedEvent += Callback_DisconnectedEvent;
+            callback.StateEvent += Callback_StateEvent;
+            callback.MoveEvent += Callback_MoveEvent;
+            callback.NewPlayerArrivedEvent += Callback_NewPlayerArrivedEvent;
+
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callback));
+
+            elevenDays_GameServiceClient.StartByGameID(game, user);
 
             this.user = user;
             this.game = game;
@@ -45,15 +54,36 @@ namespace UI_ElevenDays
             {
                 string str = elevenDays_GameServiceClient.GetPlayerString(game, i);
                 if(str!=user.Login)
-                Callback_NewPlayerArrivedEvent(new Position() { X = 0, Y = 500 }, str);
+                Callback_NewPlayerArrivedEvent(new Position() { X = 0, Y = 0 }, str);
             }
 
-            fruitControl = new FruitControl("Images/BananaCh2.png",new Position() { X=0, Y=500 },user.Login);
+            fruitControl = new FruitControl("Images/BananaCh2.png",new Position() { X=0, Y=0 },user.Login);
             fruitControl.Tag = user.Login;
 
-            callback.MoveEvent += Callback_MoveEvent;
-            callback.NewPlayerArrivedEvent += Callback_NewPlayerArrivedEvent;
             canvas.Children.Add(fruitControl);
+        }
+
+
+
+        private void Callback_DisconnectedEvent(string login)
+        {
+            FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
+
+            canvas.Children.Remove(fruitControl);
+            fruitControls.Remove(fruitControl);
+        }
+
+        private void Callback_StateEvent(string state, string login)
+        {
+            FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
+
+            string img="";
+            if (state == "StayRight")
+                img = "Images/BananaCh2.png";
+            if(state=="StayLeft")
+                img = "Images/BananaCh1.png";
+
+            fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
         }
 
         private void Callback_NewPlayerArrivedEvent(Position position, string login)
@@ -70,9 +100,10 @@ namespace UI_ElevenDays
             FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
 
             Canvas.SetLeft(fruitControl, position.X);
-            Canvas.SetLeft(fruitControl, position.Y);
+            Canvas.SetTop(fruitControl, position.Y);
         }
 
+        string state = "";
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
             int left = 0, top = 0;
@@ -90,17 +121,49 @@ namespace UI_ElevenDays
                 if (e.Key == Key.Left)
                 {
                     left -= 10;
+                    state = "StayLeft";
                 }
                 if (e.Key == Key.Right)
                 {
                     left += 10;
+                    state = "StayRight";
                 }
             }).Wait();
+
+            //elevenDays_GameServiceClient.ChangePlayerState(game, user.Login, state);
+
+            string img = "";
+            if (state == "StayRight")
+                img = "Images/BananaCh2.png";
+            if (state == "StayLeft")
+                img = "Images/BananaCh1.png";
+            fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
 
             Canvas.SetLeft(fruitControl, Canvas.GetLeft(fruitControl)+left);
             Canvas.SetTop(fruitControl, Canvas.GetTop(fruitControl)+top);
 
-            elevenDays_GameServiceClient.Move(game, user.Login, new Position() { X = Canvas.GetLeft(fruitControl), Y = Canvas.GetTop(fruitControl) });
+            elevenDays_GameServiceClient.Move(game, user.Login, new Position() { X = Canvas.GetLeft(fruitControl), Y = Canvas.GetTop(fruitControl) },state);
+            //
+        }
+
+        bool isEnded = false;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            elevenDays_GameServiceClient.End(user.Login);
+
+            MenuEDs menuEDs = new MenuEDs(user);
+            menuEDs.Show();
+
+            isEnded = true;
+            this.Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (!isEnded)
+            {
+                elevenDays_GameServiceClient.End(user.Login);
+            }
         }
     }
 }

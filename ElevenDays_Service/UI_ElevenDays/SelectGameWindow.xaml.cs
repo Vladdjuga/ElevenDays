@@ -49,7 +49,7 @@ namespace UI_ElevenDays
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (elevenDays_GameServiceClient.StartByGameID(tbCode.Text, userDTO))
+            if (elevenDays_GameServiceClient.FindGameById(tbCode.Text)!=null)
             {
                 WindowGame gameWindow = new WindowGame(userDTO, tbCode.Text);
                 gameWindow.Show();
@@ -63,7 +63,7 @@ namespace UI_ElevenDays
         {
             game = elevenDays_GameServiceClient.CreateGame();
 
-            if (elevenDays_GameServiceClient.StartByGameID(game, userDTO))
+            if (elevenDays_GameServiceClient.FindGameById(game) != null)
             {
                 WindowGame gameWindow = new WindowGame(userDTO, game);
                 gameWindow.Show();
@@ -73,7 +73,7 @@ namespace UI_ElevenDays
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            string start = elevenDays_GameServiceClient.Start(userDTO);
+            string start = elevenDays_GameServiceClient.FindGame();
             if (start != "")
             {
                 WindowGame gameWindow = new WindowGame(userDTO, start);
@@ -89,7 +89,7 @@ namespace UI_ElevenDays
 
                 GameInfo gameInfo = listBox.SelectedItem as GameInfo;
 
-                if (elevenDays_GameServiceClient.StartByGameID(gameInfo.Id, userDTO))
+                if (elevenDays_GameServiceClient.FindGameById(gameInfo.Id) != null)
                 {
                     WindowGame gameWindow = new WindowGame(userDTO, gameInfo.Id);
                     gameWindow.Show();
