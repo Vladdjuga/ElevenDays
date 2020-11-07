@@ -25,14 +25,26 @@ namespace UI_ElevenDays
     {
         public MediaPlayer soundPlay = new MediaPlayer();
         UserDTO user = new UserDTO();
-        public MenuEDs(UserDTO user)
+        //public MenuEDs(UserDTO user)
+        //{
+        //    InitializeComponent();
+        //    soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
+        //    soundPlay.Play();
+        //    this.user = user;
+        //}
+
+        public MenuEDs()
         {
             InitializeComponent();
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
+            soundPlay.Volume = 0.05;
             soundPlay.Play();
+<<<<<<< Updated upstream
             this.user = user;
 
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
+=======
+>>>>>>> Stashed changes
         }
 
 
@@ -97,5 +109,22 @@ namespace UI_ElevenDays
             this.Close();
         }
 
+<<<<<<< Updated upstream
+=======
+        private void MouseLeave(object sender, MouseEventArgs e)
+        {
+            ImageBrush imB = new ImageBrush();
+            BitmapImage bit = new BitmapImage();
+            bit.BeginInit();
+            bit.UriSource = new Uri("Images/HappyImEDs.png", UriKind.Relative);
+            bit.EndInit();
+            imB.Stretch = Stretch.Fill;
+            imB.ImageSource = bit;
+            grid.Background = imB;
+            soundPlay.Volume = 0.05;
+            soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
+            soundPlay.Play();
+        }
+>>>>>>> Stashed changes
     }
 }
