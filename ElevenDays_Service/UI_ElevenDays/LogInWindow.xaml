@@ -24,8 +24,8 @@
             <PasswordBox x:Name="tbPassword"/>
         </DockPanel>
         <DockPanel LastChildFill="False">
-            <Button Content="Log In" DockPanel.Dock="Top" Click="Button_Click_1"/>
-            <Button Content="Register" DockPanel.Dock="Top" Click="Button_Click"/>
+            <Button Content="Log In" DockPanel.Dock="Top" Click="Button_Click_1" Margin="0, 0, 0, 4"/>
+            <Button Content="Register" DockPanel.Dock="Top" Click="Button_Click" Margin="0, 0, 0, 4"/>
             <Button Content="Test" DockPanel.Dock="Top" Click="Button_Click_2"/>
         </DockPanel>
     </StackPanel>
