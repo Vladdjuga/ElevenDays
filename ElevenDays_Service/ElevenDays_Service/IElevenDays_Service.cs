@@ -25,7 +25,7 @@ namespace ElevenDays_Service
         string Start(UserDTO userDTO);
         // запускает игрока по ID комнаты
         [OperationContract(IsOneWay = false)]
-        bool StartByGameID(string gameid, UserDTO userDTO);
+        bool StartByGameID(string gameid, UserDTO userDTO, string player_Fruit);
         // метод будет удалять игрока из игры в которой он находится
         [OperationContract(IsOneWay = true)]
         void End(string login);
@@ -49,6 +49,10 @@ namespace ElevenDays_Service
         // метод получения всех игроков в введеной игре
         [OperationContract(IsOneWay = false)]
         string GetPlayerString(string game, int ind);
+        [OperationContract(IsOneWay = false)]
+        string GetPlayerFruit(string game, int ind);
+        [OperationContract(IsOneWay = false)]
+        Position GetPlayerPosition(string game, int ind);
         // метод получения всех наявных игр
         [OperationContract(IsOneWay = false)]
         string CreateGame();
@@ -66,10 +70,10 @@ namespace ElevenDays_Service
         void GetMove(Position position,string login);
 
         [OperationContract(IsOneWay = true)]
-        void GetState(string state, string login);
+        void GetState(string state, string login,string character);
 
         [OperationContract(IsOneWay = true)]
-        void GetNewPlayerArrived(Position position, string login);
+        void GetNewPlayerArrived(Position position, string login, string character);
 
         [OperationContract(IsOneWay = true)]
         void GetDisconected(string login);
@@ -127,12 +131,12 @@ namespace ElevenDays_Service
             return RandomString.ToString();
         }
 
-        internal void NotifyAllPlayersAboutState(string state, string login)
+        internal void NotifyAllPlayersAboutState(string state, string login, string character)
         {
             foreach (var item in Players)
             {
                 if (item.User.Login != login)
-                    item.Callback.GetState(state, login);
+                    item.Callback.GetState(state, login,character);
             }
         }
 
@@ -145,12 +149,12 @@ namespace ElevenDays_Service
             }
         }
 
-        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login)
+        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login, string character)
         {
             foreach (var item in Players)
             {
                 if (item.User.Login != login)
-                    item.Callback.GetNewPlayerArrived(startPosition, login);
+                    item.Callback.GetNewPlayerArrived(startPosition, login, character);
             }
         }
     }

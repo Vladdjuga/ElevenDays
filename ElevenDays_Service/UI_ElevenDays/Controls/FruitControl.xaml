@@ -9,7 +9,7 @@
         <Label Content="SampleText" Name="lblName" DockPanel.Dock="Top" Foreground="#DD000000" FontFamily="Yu Gothic UI Semibold"/>
         <Border Name="Ch" Width="100" Height="130">
             <Border.Background>
-                <ImageBrush x:Name="imgBrush"/>
+                <ImageBrush x:Name="imgBrush" Stretch="Uniform"/>
             </Border.Background>
         </Border>
     </DockPanel>

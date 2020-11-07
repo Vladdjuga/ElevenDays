@@ -29,8 +29,9 @@ namespace UI_ElevenDays
 
         UserDTO user;
         string game;
+        string character;
 
-        public WindowGame(UserDTO user, string game)
+        public WindowGame(UserDTO user, string game, string character)
         {
             InitializeComponent();
 
@@ -45,19 +46,22 @@ namespace UI_ElevenDays
 
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callback));
 
-            elevenDays_GameServiceClient.StartByGameID(game, user);
+            elevenDays_GameServiceClient.StartByGameID(game, user,character);
 
             this.user = user;
             this.game = game;
+            this.character = character;
 
             for (int i = 0; i < elevenDays_GameServiceClient.GetPlayersCount(game); i++)
             {
                 string str = elevenDays_GameServiceClient.GetPlayerString(game, i);
-                if(str!=user.Login)
-                Callback_NewPlayerArrivedEvent(new Position() { X = 0, Y = 0 }, str);
+                string charact = elevenDays_GameServiceClient.GetPlayerFruit(game, i);
+                Position position = elevenDays_GameServiceClient.GetPlayerPosition(game, i);
+                if (str!=user.Login)
+                Callback_NewPlayerArrivedEvent(position, str, charact);
             }
 
-            fruitControl = new FruitControl("Images/BananaCh2.png",new Position() { X=0, Y=0 },user.Login);
+            fruitControl = new FruitControl($"Images/{character}Ch2.png", new Position() { X=0, Y=0 },user.Login);
             fruitControl.Tag = user.Login;
 
             canvas.Children.Add(fruitControl);
@@ -73,22 +77,22 @@ namespace UI_ElevenDays
             fruitControls.Remove(fruitControl);
         }
 
-        private void Callback_StateEvent(string state, string login)
+        private void Callback_StateEvent(string state, string login, string charact)
         {
             FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
 
             string img="";
             if (state == "StayRight")
-                img = "Images/BananaCh2.png";
+                img = $"Images/{charact}Ch2.png";
             if(state=="StayLeft")
-                img = "Images/BananaCh1.png";
+                img = $"Images/{charact}Ch1.png";
 
             fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
         }
 
-        private void Callback_NewPlayerArrivedEvent(Position position, string login)
+        private void Callback_NewPlayerArrivedEvent(Position position, string login, string character)
         {
-            FruitControl fruitControl = new FruitControl("Images/BananaCh2.png", position,login);
+            FruitControl fruitControl = new FruitControl($"Images/{character}Ch2.png", position,login);
             fruitControl.Tag = login;
 
             canvas.Children.Add(fruitControl);
@@ -134,9 +138,9 @@ namespace UI_ElevenDays
 
             string img = "";
             if (state == "StayRight")
-                img = "Images/BananaCh2.png";
+                img = $"Images/{character}Ch2.png";
             if (state == "StayLeft")
-                img = "Images/BananaCh1.png";
+                img = $"Images/{character}Ch1.png";
             fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
 
             Canvas.SetLeft(fruitControl, Canvas.GetLeft(fruitControl)+left);

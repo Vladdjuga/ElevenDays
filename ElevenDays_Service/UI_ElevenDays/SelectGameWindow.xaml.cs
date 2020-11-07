@@ -51,7 +51,7 @@ namespace UI_ElevenDays
         {
             if (elevenDays_GameServiceClient.FindGameById(tbCode.Text)!=null)
             {
-                WindowGame gameWindow = new WindowGame(userDTO, tbCode.Text);
+                MenuSelectCharacter gameWindow = new MenuSelectCharacter(userDTO, tbCode.Text);
                 gameWindow.Show();
                 this.Close();
             }
@@ -65,7 +65,7 @@ namespace UI_ElevenDays
 
             if (elevenDays_GameServiceClient.FindGameById(game) != null)
             {
-                WindowGame gameWindow = new WindowGame(userDTO, game);
+                MenuSelectCharacter gameWindow = new MenuSelectCharacter(userDTO, game);
                 gameWindow.Show();
                 this.Close();
             }
@@ -76,7 +76,7 @@ namespace UI_ElevenDays
             string start = elevenDays_GameServiceClient.FindGame();
             if (start != "")
             {
-                WindowGame gameWindow = new WindowGame(userDTO, start);
+                MenuSelectCharacter gameWindow = new MenuSelectCharacter(userDTO, start);
                 gameWindow.Show();
                 this.Close();
             }
@@ -91,7 +91,7 @@ namespace UI_ElevenDays
 
                 if (elevenDays_GameServiceClient.FindGameById(gameInfo.Id) != null)
                 {
-                    WindowGame gameWindow = new WindowGame(userDTO, gameInfo.Id);
+                    MenuSelectCharacter gameWindow = new MenuSelectCharacter(userDTO, gameInfo.Id);
                     gameWindow.Show();
                     this.Close();
                 }

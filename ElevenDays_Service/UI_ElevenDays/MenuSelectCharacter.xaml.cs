@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI_ElevenDays.ServiceReference2;
 
 namespace UI_ElevenDays
 {
@@ -19,16 +20,21 @@ namespace UI_ElevenDays
     /// </summary>
     public partial class MenuSelectCharacter : Window
     {
-        public MenuSelectCharacter()
+        private UserDTO user;
+        private string game;
+
+        public MenuSelectCharacter(UserDTO userDTO,string game)
         {
             InitializeComponent();
+            user = userDTO;
+            this.game = game;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //WindowGame windowGame = new WindowGame();
-            //windowGame.Show();
-            //this.Close();
+            WindowGame windowGame = new WindowGame(user,game,(sender as Border).Tag.ToString());
+            windowGame.Show();
+            this.Close();
         }
     }
 }

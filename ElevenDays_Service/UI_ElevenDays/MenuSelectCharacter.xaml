@@ -25,59 +25,59 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/BananaCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Banana" Grid.Column="0" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="BananaCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="1" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/KiwiCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Kiwi" Grid.Column="1" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="KiwiCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="2" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3"  Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/CucumberCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Cucumber" Grid.Column="2" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3"  MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="CucumberCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="3" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/TomatoCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Tomato" Grid.Column="3" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="TomatoCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="4" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/MangoCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Mango" Grid.Column="4" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="MangoCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="0" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/OrangeCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Orange" Grid.Column="0" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="OrangeCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="1" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/EggplantCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Eggplant" Grid.Column="1" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="EggplantCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="2" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/CabbageCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Cabbage" Grid.Column="2" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="CabbageCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
 
-            <Button Grid.Column="3" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" Click="Button_Click">
-                <Button.Background>
-                    <ImageBrush ImageSource="Images/CarrotCh1.png"></ImageBrush>
-                </Button.Background>
-            </Button>
+            <Border Tag="Carrot" Grid.Column="3" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="CarrotCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
         </Grid>
     </Grid>
 </Window>

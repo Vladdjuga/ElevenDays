@@ -87,14 +87,17 @@ namespace ElevenDays_Service
                 }
             }
             if (gameInfo != null)
+            {
+                PlayerInfo playerInfo = gameInfo.Players.First(el => el.User.Login == login);
                 foreach (var item in gameInfo.Players)
                 {
                     if (item.User.Login != login)
                     {
                         item.Callback.GetMove(positionPlayer, login);
-                        item.Callback.GetState(state, login);
+                        item.Callback.GetState(state, login, playerInfo.Player_Fruit.ToString());
                     }
                 }
+            }
         }
 
         public bool Register(string login, string email, string password)
@@ -124,7 +127,7 @@ namespace ElevenDays_Service
                         pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
                         pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                         game.Players.Add(pi);
-                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login);
+                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login, pi.Player_Fruit.ToString());
                         return game.Id;
                     }
                 }
@@ -141,7 +144,7 @@ namespace ElevenDays_Service
             return "";
         }
 
-        public bool StartByGameID(string gameid, UserDTO userDTO)
+        public bool StartByGameID(string gameid, UserDTO userDTO,string player_Fruit)
         {
             PlayerInfo pi = null;
             User user = mapperFrom.Map<User>(userDTO);
@@ -149,10 +152,10 @@ namespace ElevenDays_Service
 
             if (gameInfo != null)
             {
-                pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
                 pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                 gameInfo.Players.Add(pi);
-                gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login);
+                gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString());
                 return true;
             }
             return false;
@@ -255,9 +258,21 @@ namespace ElevenDays_Service
                 {
                     if (item.User.Login != login)
                     {
-                        item.Callback.GetState(currentPlayerState,item.User.Login);
+                        item.Callback.GetState(currentPlayerState,item.User.Login,item.Player_Fruit.ToString());
                     }
                 }
+        }
+
+        public string GetPlayerFruit(string game, int ind)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players[ind].Player_Fruit.ToString();
+        }
+
+        public Position GetPlayerPosition(string game, int ind)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players[ind].Hitbox.StartPosition;
         }
     }
 }

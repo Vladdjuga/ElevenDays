@@ -417,10 +417,10 @@ namespace UI_ElevenDays.ServiceReference2 {
         System.Threading.Tasks.Task<string> StartAsync(UI_ElevenDays.ServiceReference2.UserDTO userDTO);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/StartByGameID", ReplyAction="http://tempuri.org/IElevenDays_GameService/StartByGameIDResponse")]
-        bool StartByGameID(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO);
+        bool StartByGameID(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO, string player_Fruit);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/StartByGameID", ReplyAction="http://tempuri.org/IElevenDays_GameService/StartByGameIDResponse")]
-        System.Threading.Tasks.Task<bool> StartByGameIDAsync(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO);
+        System.Threading.Tasks.Task<bool> StartByGameIDAsync(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO, string player_Fruit);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/End")]
         void End(string login);
@@ -470,6 +470,18 @@ namespace UI_ElevenDays.ServiceReference2 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GetPlayerString", ReplyAction="http://tempuri.org/IElevenDays_GameService/GetPlayerStringResponse")]
         System.Threading.Tasks.Task<string> GetPlayerStringAsync(string game, int ind);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GetPlayerFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/GetPlayerFruitResponse")]
+        string GetPlayerFruit(string game, int ind);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GetPlayerFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/GetPlayerFruitResponse")]
+        System.Threading.Tasks.Task<string> GetPlayerFruitAsync(string game, int ind);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GetPlayerPosition", ReplyAction="http://tempuri.org/IElevenDays_GameService/GetPlayerPositionResponse")]
+        UI_ElevenDays.ServiceReference2.Position GetPlayerPosition(string game, int ind);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GetPlayerPosition", ReplyAction="http://tempuri.org/IElevenDays_GameService/GetPlayerPositionResponse")]
+        System.Threading.Tasks.Task<UI_ElevenDays.ServiceReference2.Position> GetPlayerPositionAsync(string game, int ind);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/CreateGame", ReplyAction="http://tempuri.org/IElevenDays_GameService/CreateGameResponse")]
         string CreateGame();
         
@@ -496,10 +508,10 @@ namespace UI_ElevenDays.ServiceReference2 {
         void GetMove(UI_ElevenDays.ServiceReference2.Position position, string login);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetState")]
-        void GetState(string state, string login);
+        void GetState(string state, string login, string character);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetNewPlayerArrived")]
-        void GetNewPlayerArrived(UI_ElevenDays.ServiceReference2.Position position, string login);
+        void GetNewPlayerArrived(UI_ElevenDays.ServiceReference2.Position position, string login, string character);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetDisconected")]
         void GetDisconected(string login);
@@ -557,12 +569,12 @@ namespace UI_ElevenDays.ServiceReference2 {
             return base.Channel.StartAsync(userDTO);
         }
         
-        public bool StartByGameID(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO) {
-            return base.Channel.StartByGameID(gameid, userDTO);
+        public bool StartByGameID(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO, string player_Fruit) {
+            return base.Channel.StartByGameID(gameid, userDTO, player_Fruit);
         }
         
-        public System.Threading.Tasks.Task<bool> StartByGameIDAsync(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO) {
-            return base.Channel.StartByGameIDAsync(gameid, userDTO);
+        public System.Threading.Tasks.Task<bool> StartByGameIDAsync(string gameid, UI_ElevenDays.ServiceReference2.UserDTO userDTO, string player_Fruit) {
+            return base.Channel.StartByGameIDAsync(gameid, userDTO, player_Fruit);
         }
         
         public void End(string login) {
@@ -627,6 +639,22 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         public System.Threading.Tasks.Task<string> GetPlayerStringAsync(string game, int ind) {
             return base.Channel.GetPlayerStringAsync(game, ind);
+        }
+        
+        public string GetPlayerFruit(string game, int ind) {
+            return base.Channel.GetPlayerFruit(game, ind);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetPlayerFruitAsync(string game, int ind) {
+            return base.Channel.GetPlayerFruitAsync(game, ind);
+        }
+        
+        public UI_ElevenDays.ServiceReference2.Position GetPlayerPosition(string game, int ind) {
+            return base.Channel.GetPlayerPosition(game, ind);
+        }
+        
+        public System.Threading.Tasks.Task<UI_ElevenDays.ServiceReference2.Position> GetPlayerPositionAsync(string game, int ind) {
+            return base.Channel.GetPlayerPositionAsync(game, ind);
         }
         
         public string CreateGame() {
