@@ -33,18 +33,15 @@ namespace UI_ElevenDays
         //    this.user = user;
         //}
 
-        public MenuEDs()
+        public MenuEDs(UserDTO user)
         {
             InitializeComponent();
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
             soundPlay.Volume = 0.05;
             soundPlay.Play();
-<<<<<<< Updated upstream
             this.user = user;
 
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
-=======
->>>>>>> Stashed changes
         }
 
 
@@ -109,8 +106,6 @@ namespace UI_ElevenDays
             this.Close();
         }
 
-<<<<<<< Updated upstream
-=======
         private void MouseLeave(object sender, MouseEventArgs e)
         {
             ImageBrush imB = new ImageBrush();
@@ -120,11 +115,15 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridВ.Background = imB;
             soundPlay.Volume = 0.05;
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
             soundPlay.Play();
         }
->>>>>>> Stashed changes
+
+        private void btnEx_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

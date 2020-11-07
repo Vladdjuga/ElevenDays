@@ -62,17 +62,7 @@ namespace UI_ElevenDays
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-<<<<<<< Updated upstream
-            /*MenuEDs wd = new MenuEDs();
-            this.Close();
-            wd.Show();*/
-=======
-            MenuEDs wd = new MenuEDs();
-            this.Close();
-            wd.Show();
-            //new MenuSelectCharacter().Show();
-            //this.Close();
->>>>>>> Stashed changes
+
         }
     }
 }
