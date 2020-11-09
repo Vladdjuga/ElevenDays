@@ -6,26 +6,35 @@
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        xmlns:controls="clr-namespace:UI_ElevenDays.Controls"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Eleven Days" Height="450" Width="800">
-    <StackPanel Margin="100">
-        <DockPanel>
-            <Label Content="Login:"/>
-            <TextBox x:Name="tbEmail"/>
+        Title="Eleven Days" Height="450" Width="800" ResizeMode="NoResize" WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <controls:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
+            <controls:WindowToolsControl TextField="□" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_1"/>
+            <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
         </DockPanel>
-        <DockPanel Margin="0,30">
-            <Label Content="Password:"/>
-            <PasswordBox x:Name="tbPassword"/>
-        </DockPanel>
-        <DockPanel LastChildFill="False">
-            <Button Content="Log In" DockPanel.Dock="Top" Click="Button_Click_1" Margin="0, 0, 0, 4"/>
-            <Button Content="Register" DockPanel.Dock="Top" Click="Button_Click" Margin="0, 0, 0, 4"/>
-        </DockPanel>
-    </StackPanel>
+        <StackPanel Margin="100">
+            <DockPanel>
+                <Label Content="Login:"/>
+                <TextBox x:Name="tbEmail"/>
+            </DockPanel>
+            <DockPanel Margin="0,30">
+                <Label Content="Password:"/>
+                <PasswordBox x:Name="tbPassword"/>
+            </DockPanel>
+            <DockPanel LastChildFill="False">
+                <Button Content="Log In" DockPanel.Dock="Top" Click="Button_Click_1" Margin="0, 0, 0, 4"/>
+                <Button Content="Register" DockPanel.Dock="Top" Click="Button_Click" Margin="0, 0, 0, 4"/>
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
 </Window>

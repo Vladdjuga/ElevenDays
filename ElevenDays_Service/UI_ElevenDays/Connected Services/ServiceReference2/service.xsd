@@ -228,6 +228,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="IsAnyWithFruit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fruit" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsAnyWithFruitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsAnyWithFruitResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetMove">
     <xs:complexType>
       <xs:sequence>

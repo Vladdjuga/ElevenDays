@@ -82,6 +82,12 @@
     <Compile Include="Controls\FruitControl.xaml.cs">
       <DependentUpon>FruitControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WindowDefaultToolBar.xaml.cs">
+      <DependentUpon>WindowDefaultToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WindowToolsControl.xaml.cs">
+      <DependentUpon>WindowToolsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuEDs.xaml.cs">
       <DependentUpon>MenuEDs.xaml</DependentUpon>
     </Compile>
@@ -101,6 +107,14 @@
       <DependentUpon>WindowGame.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\FruitControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowDefaultToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowToolsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

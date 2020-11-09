@@ -6,28 +6,36 @@
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        xmlns:controls="clr-namespace:UI_ElevenDays.Controls"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MenuEDs" Height="450" Width="800">
+        Title="MenuEDs" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
-    <Grid Name="gridВ">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="HappyImEDs.png"></ImageBrush>
-        </Grid.Background>
-        <Button Name="btnStart" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="0" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Start" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnStart_MouseMove" Click="btnStart_Click" MouseLeave="MouseLeave"/>
-        <Button Name="btnOpt" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="1" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Options" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnOpt_MouseMove" Click="btnOpt_Click" MouseLeave="MouseLeave"/>
-        <Button Name="btnEx" materialDesign:ButtonAssist.CornerRadius="25"  Grid.Row="2" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Exit" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnEx_MouseMove" Click="btnEx_Click" MouseLeave="MouseLeave"/>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <controls:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
+            <controls:WindowToolsControl TextField="□" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_1"/>
+            <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
+        </DockPanel>
+        <Grid Name="gridВ">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="HappyImEDs.png"></ImageBrush>
+            </Grid.Background>
+            <Button Name="btnStart" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="0" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Start" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnStart_MouseMove" Click="btnStart_Click" MouseLeave="MouseLeave"/>
+            <Button Name="btnOpt" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="1" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Options" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnOpt_MouseMove" Click="btnOpt_Click" MouseLeave="MouseLeave"/>
+            <Button Name="btnEx" materialDesign:ButtonAssist.CornerRadius="25"  Grid.Row="2" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Exit" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnEx_MouseMove" Click="btnEx_Click" MouseLeave="MouseLeave"/>
 
 
-    </Grid>
+        </Grid>
+    </DockPanel>
 </Window>

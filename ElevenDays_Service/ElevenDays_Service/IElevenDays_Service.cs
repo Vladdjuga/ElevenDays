@@ -62,6 +62,10 @@ namespace ElevenDays_Service
         //
         [OperationContract(IsOneWay = false)]
         string FindGameById(string id);
+        //
+        [OperationContract(IsOneWay = false)]
+        bool IsAnyWithFruit(string game,string fruit);
+
     }
 
     public interface ICallback

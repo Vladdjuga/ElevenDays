@@ -39,11 +39,25 @@ namespace UI_ElevenDays
                 bool v = elevenDays_GameServiceClient.Register(tbLogin.Text, tbEmail.Text, pbPassword.Password);
 
                 if (!v)
-                    MessageBox.Show("This login are already exists!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                    MessageBox.Show("This login are already exists!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
-                DialogResult = v;
+                    DialogResult = v;
             }
-            catch(Exception ex) { MessageBox.Show("Try again!"); }
+            catch (Exception ex) { MessageBox.Show("Try again!"); }
+        }
+        private void WindowToolsControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowToolsControl_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized == this.WindowState ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void WindowToolsControl_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

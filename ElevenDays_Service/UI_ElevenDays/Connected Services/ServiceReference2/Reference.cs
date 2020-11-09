@@ -499,6 +499,12 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/FindGameById", ReplyAction="http://tempuri.org/IElevenDays_GameService/FindGameByIdResponse")]
         System.Threading.Tasks.Task<string> FindGameByIdAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruitResponse")]
+        bool IsAnyWithFruit(string game, string fruit);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruitResponse")]
+        System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -679,6 +685,14 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         public System.Threading.Tasks.Task<string> FindGameByIdAsync(string id) {
             return base.Channel.FindGameByIdAsync(id);
+        }
+        
+        public bool IsAnyWithFruit(string game, string fruit) {
+            return base.Channel.IsAnyWithFruit(game, fruit);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit) {
+            return base.Channel.IsAnyWithFruitAsync(game, fruit);
         }
     }
 }

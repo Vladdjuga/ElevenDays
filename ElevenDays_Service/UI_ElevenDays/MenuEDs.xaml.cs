@@ -44,6 +44,21 @@ namespace UI_ElevenDays
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
         }
 
+        private void WindowToolsControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowToolsControl_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized == this.WindowState ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void WindowToolsControl_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
 
         private void btnStart_MouseMove(object sender, MouseEventArgs e)
         {
@@ -94,7 +109,10 @@ namespace UI_ElevenDays
 
         private void btnOpt_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Hide();
+            MenuOptions menuOptions = new MenuOptions();
+            if (menuOptions.ShowDialog() == true)
+                this.Show();
         }
 
         ElevenDays_GameServiceClient elevenDays_GameServiceClient;
@@ -123,7 +141,7 @@ namespace UI_ElevenDays
 
         private void btnEx_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

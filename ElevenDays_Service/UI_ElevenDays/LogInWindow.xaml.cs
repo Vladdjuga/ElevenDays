@@ -64,5 +64,20 @@ namespace UI_ElevenDays
         {
 
         }
+
+        private void WindowToolsControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowToolsControl_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized == this.WindowState ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void WindowToolsControl_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

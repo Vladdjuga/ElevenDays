@@ -23,11 +23,26 @@ namespace UI_ElevenDays
         private UserDTO user;
         private string game;
 
+        ElevenDays_GameServiceClient elevenDays_GameServiceClient;
+        CallbackHandler callback = new CallbackHandler();
+
         public MenuSelectCharacter(UserDTO userDTO,string game)
         {
             InitializeComponent();
             user = userDTO;
             this.game = game;
+
+            elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callback));
+
+            foreach (var item in grid.Children)
+            {
+                if(item is Border)
+                {
+                    (item as Border).IsEnabled = !elevenDays_GameServiceClient.IsAnyWithFruit(game, (item as Border).Tag.ToString());
+                    if (!(item as Border).IsEnabled)
+                        (item as Border).Opacity = 0.5;
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

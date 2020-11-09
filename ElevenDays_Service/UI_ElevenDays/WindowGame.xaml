@@ -8,9 +8,26 @@
         mc:Ignorable="d"
         Title="WindowGame" Height="619.446" Width="1003.123"
         KeyDown="Canvas_KeyDown" Closed="Window_Closed"
+                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowState="Maximized"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         >
-    <Canvas x:Name="canvas">
-        <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5"/>
-        <Button Content="Exit" Canvas.Left="922" Canvas.Top="10" FontSize="20" Click="Button_Click"/>
-    </Canvas>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <controls:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
+            <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
+            <Button Content="Exit" Canvas.Left="922" Canvas.Top="10" FontSize="20" Click="Button_Click"/>
+        </DockPanel>
+        <Canvas x:Name="canvas">
+            <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5"/>
+        </Canvas>
+        </DockPanel>
 </Window>

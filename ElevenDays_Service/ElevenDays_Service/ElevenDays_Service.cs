@@ -274,5 +274,11 @@ namespace ElevenDays_Service
             GameInfo gameInfo = GetGameInfoByID(game);
             return gameInfo.Players[ind].Hitbox.StartPosition;
         }
+
+        public bool IsAnyWithFruit(string game,string fruit)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players.Any(el => el.Player_Fruit.ToString() == fruit);
+        }
     }
 }

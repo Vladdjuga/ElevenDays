@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
-        Title="MenuSelectCharacter" Height="450" Width="800">
+        Title="MenuSelectCharacter" Height="450" Width="800" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="DarkGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Label Foreground="Black" Content="Select Character" FontSize="45" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Chiller"></Label>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>

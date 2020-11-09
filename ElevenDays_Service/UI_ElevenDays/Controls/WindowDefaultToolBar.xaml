@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="UI_ElevenDays.Controls.WindowDefaultToolBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI_ElevenDays.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+        <local:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
+        <local:WindowToolsControl TextField="□" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_1"/>
+        <local:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
+    </DockPanel>
+</UserControl>

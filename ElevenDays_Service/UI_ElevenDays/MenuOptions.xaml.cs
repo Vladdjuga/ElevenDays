@@ -22,6 +22,27 @@ namespace UI_ElevenDays
         public MenuOptions()
         {
             InitializeComponent();
+
+            cb.Items.Add("800X600");
+            cb.Items.Add("1280X720");
+            cb.Items.Add("1440X900");
+            cb.Items.Add("1920X1080");
+            cb.Items.Add("2560X1440");
+            cb.Items.Add("3840X2160");
+        }
+        private void WindowToolsControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void WindowToolsControl_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized == this.WindowState ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void WindowToolsControl_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

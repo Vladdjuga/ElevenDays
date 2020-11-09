@@ -6,59 +6,67 @@
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
                         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        xmlns:controls="clr-namespace:UI_ElevenDays.Controls"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="SelectGameWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <!--<Border Width="80" Height="60" Margin="0,0,500,0" MouseDown="Border_MouseDown">
+        Title="SelectGameWindow" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <controls:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
+            <controls:WindowToolsControl TextField="□" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_1"/>
+            <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
+        </DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<Border Width="80" Height="60" Margin="0,0,500,0" MouseDown="Border_MouseDown">
             <Border.Background>
                 <ImageBrush ImageSource="Без имени-3.png"/>
             </Border.Background>
         </Border>-->
-        <DockPanel LastChildFill="False">
-            <Button Width="80" Height="60" Click="Button_Click_2" Content="Create" Margin="20,0"/>
-            <Button Width="110" Height="60" Click="Button_Click_3" Content="Join random" Margin="10,0"/>
-            <Button Width="110" Height="60" Click="Button_Click_4" Content="Join" Margin="20,0"/>
-        </DockPanel>
-        
-        <DockPanel Margin="100,0" Grid.Row="1">
-            <Border Width="125" Height="125" BorderBrush="{x:Null}" Style="{x:Null}" DockPanel.Dock="Right" MouseDown="Button_Click">
-                <Border.Background>
-                    <ImageBrush ImageSource="Без имени-1.png"/>
-                </Border.Background>
-            </Border>
-            <ListBox HorizontalContentAlignment="Stretch" x:Name="listBox">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <TextBlock DockPanel.Dock="Top">
+            <DockPanel LastChildFill="False">
+                <Button Width="80" Height="60" Click="Button_Click_2" Content="Create" Margin="20,0"/>
+                <Button Width="110" Height="60" Click="Button_Click_3" Content="Join random" Margin="10,0"/>
+                <Button Width="110" Height="60" Click="Button_Click_4" Content="Join" Margin="20,0"/>
+            </DockPanel>
+
+            <DockPanel Margin="100,0" Grid.Row="1">
+                <Border Width="125" Height="125" BorderBrush="{x:Null}" Style="{x:Null}" DockPanel.Dock="Right" MouseDown="Button_Click">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Без имени-1.png"/>
+                    </Border.Background>
+                </Border>
+                <ListBox HorizontalContentAlignment="Stretch" x:Name="listBox">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top">
                         <Run Text="{Binding Id}"/>
-                            </TextBlock>
-                        <TextBlock Text="Default map" DockPanel.Dock="Bottom"/>
-                    </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </DockPanel>
-        <DockPanel Grid.Row="2" Margin="100,0">
-            <Border Style="{x:Null}" BorderBrush="{x:Null}" DockPanel.Dock="Right" Width="80" Height="60" MouseDown="Button_Click_1">
-                <Border.Background>
-                    <ImageBrush ImageSource="Без имени-2.png"/>
-                </Border.Background>
-            </Border>
-            <Border>
-                <TextBox Name="tbCode"/>
-            </Border>
-        </DockPanel>
-    </Grid>
+                                </TextBlock>
+                                <TextBlock Text="Default map" DockPanel.Dock="Bottom"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <DockPanel Grid.Row="2" Margin="100,0">
+                <Border Style="{x:Null}" BorderBrush="{x:Null}" DockPanel.Dock="Right" Width="80" Height="60" MouseDown="Button_Click_1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Без имени-2.png"/>
+                    </Border.Background>
+                </Border>
+                <Border>
+                    <TextBox Name="tbCode"/>
+                </Border>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
 </Window>
