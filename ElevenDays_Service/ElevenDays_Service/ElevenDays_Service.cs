@@ -152,11 +152,14 @@ namespace ElevenDays_Service
 
             if (gameInfo != null)
             {
-                pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
-                pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
-                gameInfo.Players.Add(pi);
-                gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString());
-                return true;
+                if (gameInfo.Players.Count < 9)
+                {
+                    pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                    pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
+                    gameInfo.Players.Add(pi);
+                    gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString());
+                    return true;
+                }
             }
             return false;
         }
