@@ -25,9 +25,9 @@
             <controls:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
             <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
             <Button Content="Exit" Canvas.Left="922" Canvas.Top="10" FontSize="20" Click="Button_Click"/>
+            <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5" Margin="10,0"/>
         </DockPanel>
-        <Canvas x:Name="canvas">
-            <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5"/>
-        </Canvas>
+        <DockPanel Name="dockpanel">
+        </DockPanel>
         </DockPanel>
 </Window>

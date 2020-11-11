@@ -227,13 +227,13 @@ namespace UI_ElevenDays.ServiceReference2 {
         private bool IsImposterField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UI_ElevenDays.ServiceReference2.Model ModelField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlayerStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Player_FruitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RoomField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private DLL_User.User UserField;
@@ -275,19 +275,6 @@ namespace UI_ElevenDays.ServiceReference2 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public UI_ElevenDays.ServiceReference2.Model Model {
-            get {
-                return this.ModelField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ModelField, value) != true)) {
-                    this.ModelField = value;
-                    this.RaisePropertyChanged("Model");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string PlayerState {
             get {
                 return this.PlayerStateField;
@@ -309,6 +296,19 @@ namespace UI_ElevenDays.ServiceReference2 {
                 if ((object.ReferenceEquals(this.Player_FruitField, value) != true)) {
                     this.Player_FruitField = value;
                     this.RaisePropertyChanged("Player_Fruit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Room {
+            get {
+                return this.RoomField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoomField, value) != true)) {
+                    this.RoomField = value;
+                    this.RaisePropertyChanged("Room");
                 }
             }
         }
@@ -341,35 +341,6 @@ namespace UI_ElevenDays.ServiceReference2 {
     [System.Runtime.Serialization.DataContractAttribute(Name="Hitbox", Namespace="http://schemas.datacontract.org/2004/07/PlayerCordons")]
     [System.SerializableAttribute()]
     public partial class Hitbox : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Model", Namespace="http://schemas.datacontract.org/2004/07/PlayerCordons")]
-    [System.SerializableAttribute()]
-    public partial class Model : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -505,6 +476,18 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruitResponse")]
         System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoom", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomResponse")]
+        string PlayerCurrentRoom(string game, int ind);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoom", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomResponse")]
+        System.Threading.Tasks.Task<string> PlayerCurrentRoomAsync(string game, int ind);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLogin", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLoginResponse")]
+        string PlayerCurrentRoomByLogin(string game, string login);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLogin", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLoginResponse")]
+        System.Threading.Tasks.Task<string> PlayerCurrentRoomByLoginAsync(string game, string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -693,6 +676,22 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         public System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit) {
             return base.Channel.IsAnyWithFruitAsync(game, fruit);
+        }
+        
+        public string PlayerCurrentRoom(string game, int ind) {
+            return base.Channel.PlayerCurrentRoom(game, ind);
+        }
+        
+        public System.Threading.Tasks.Task<string> PlayerCurrentRoomAsync(string game, int ind) {
+            return base.Channel.PlayerCurrentRoomAsync(game, ind);
+        }
+        
+        public string PlayerCurrentRoomByLogin(string game, string login) {
+            return base.Channel.PlayerCurrentRoomByLogin(game, login);
+        }
+        
+        public System.Threading.Tasks.Task<string> PlayerCurrentRoomByLoginAsync(string game, string login) {
+            return base.Channel.PlayerCurrentRoomByLoginAsync(game, login);
         }
     }
 }

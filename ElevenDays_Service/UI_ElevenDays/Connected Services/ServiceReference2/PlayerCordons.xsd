@@ -17,8 +17,4 @@
     <xs:sequence />
   </xs:complexType>
   <xs:element name="Hitbox" nillable="true" type="tns:Hitbox" />
-  <xs:complexType name="Model">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="Model" nillable="true" type="tns:Model" />
 </xs:schema>

@@ -12,10 +12,10 @@
     <xs:sequence>
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="Hitbox" nillable="true" type="q1:Hitbox" />
       <xs:element minOccurs="0" name="IsImposter" type="xs:boolean" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="Model" nillable="true" type="q2:Model" />
       <xs:element minOccurs="0" name="PlayerState" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Player_Fruit" type="tns:Player_Fruit" />
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DLL_User" minOccurs="0" name="User" nillable="true" type="q3:User" />
+      <xs:element minOccurs="0" name="Room" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DLL_User" minOccurs="0" name="User" nillable="true" type="q2:User" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PlayerInfo" nillable="true" type="tns:PlayerInfo" />

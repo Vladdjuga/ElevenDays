@@ -14,7 +14,7 @@ using System.Text;
 namespace ElevenDays_Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
-                     ConcurrencyMode = ConcurrencyMode.Single)]
+                     ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -83,6 +83,7 @@ namespace ElevenDays_Service
                 {
                     player.Hitbox.StartPosition = positionPlayer;
                     player.PlayerState = state;
+                    player.Room = "bath";
                     break;
                 }
             }
@@ -93,8 +94,13 @@ namespace ElevenDays_Service
                 {
                     if (item.User.Login != login)
                     {
-                        item.Callback.GetMove(positionPlayer, login);
-                        item.Callback.GetState(state, login, playerInfo.Player_Fruit.ToString());
+                        try
+                        {
+                            item.Callback.GetMove(positionPlayer, login);
+                            item.Callback.GetState(state, login, playerInfo.Player_Fruit.ToString());
+                            //item.Callback.PlayerChangedRoom(item.User.Login, item.Room, room);
+                        }
+                        catch(Exception ex) { }
                     }
                 }
             }
@@ -154,7 +160,7 @@ namespace ElevenDays_Service
             {
                 if (gameInfo.Players.Count < 9)
                 {
-                    pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
+                    pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 }, Room="bath" };
                     pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                     gameInfo.Players.Add(pi);
                     gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString());
@@ -282,6 +288,18 @@ namespace ElevenDays_Service
         {
             GameInfo gameInfo = GetGameInfoByID(game);
             return gameInfo.Players.Any(el => el.Player_Fruit.ToString() == fruit);
+        }
+
+        public string PlayerCurrentRoom(string game, int ind)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players[ind].Room;
+        }
+
+        public string PlayerCurrentRoomByLogin(string game, string login)
+        {
+            GameInfo gameInfo = GetGameInfoByID(game);
+            return gameInfo.Players.First(el=>el.User.Login==login).Room;
         }
     }
 }

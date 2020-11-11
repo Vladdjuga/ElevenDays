@@ -65,7 +65,12 @@ namespace ElevenDays_Service
         //
         [OperationContract(IsOneWay = false)]
         bool IsAnyWithFruit(string game,string fruit);
-
+        //
+        [OperationContract(IsOneWay = false)]
+        string PlayerCurrentRoom(string game, int ind);
+        //
+        [OperationContract(IsOneWay = false)]
+        string PlayerCurrentRoomByLogin(string game, string login);
     }
 
     public interface ICallback
@@ -97,7 +102,7 @@ namespace ElevenDays_Service
         [DataMember]
         public Hitbox Hitbox { get; set; }
         // модель игрока
-        [DataMember]
+
         public Model Model { get; set; }
         // логическая переменная указывающая предатель ли игрок
         [DataMember]
@@ -107,6 +112,9 @@ namespace ElevenDays_Service
 
         [DataMember]
         public string PlayerState { get; set; }
+        
+        [DataMember]
+        public string Room { get; set; }
     }
 
     [DataContract]

@@ -12,6 +12,7 @@ namespace UI_ElevenDays
         public event Action<Position, string> MoveEvent;
         public event Action<Position, string, string> NewPlayerArrivedEvent;
         public event Action<string, string, string> StateEvent;
+        public event Action<string, string, string> PlayerChangedEvent;
         public event Action<string> DisconnectedEvent;
         public int Count = 0;
 
@@ -34,6 +35,11 @@ namespace UI_ElevenDays
         public void GetDisconected(string login)
         {
             DisconnectedEvent?.Invoke(login);
+        }
+
+        public void PlayerChangedRoom(string login, string roomOld, string roomNew)
+        {
+            PlayerChangedEvent?.Invoke(login, roomOld, roomNew);
         }
     }
 }

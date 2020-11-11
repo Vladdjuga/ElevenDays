@@ -31,5 +31,6 @@ namespace UI_ElevenDays.Controls
             Canvas.SetLeft(this, position.X);
             Canvas.SetTop(this, position.Y);
         }
+        public string Room { get; set; }
     }
 }

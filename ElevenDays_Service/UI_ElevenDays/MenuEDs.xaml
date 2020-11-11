@@ -31,7 +31,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="HappyImEDs.png"></ImageBrush>
             </Grid.Background>
-            <Button Name="btnStart" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="0" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Start" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnStart_MouseMove" Click="btnStart_Click" MouseLeave="MouseLeave"/>
+            <Button Name="btnStart" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="0" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Start" Opacity="0.85" Height="Auto" FontFamily="Chiller"  Click="btnStart_Click" MouseLeave="MouseLeave"/>
             <Button Name="btnOpt" materialDesign:ButtonAssist.CornerRadius="25" Grid.Row="1" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Options" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnOpt_MouseMove" Click="btnOpt_Click" MouseLeave="MouseLeave"/>
             <Button Name="btnEx" materialDesign:ButtonAssist.CornerRadius="25"  Grid.Row="2" Margin="300,30" FontSize="50" FontWeight="Bold" Content="Exit" Opacity="0.85" Height="Auto" FontFamily="Chiller" MouseMove="btnEx_MouseMove" Click="btnEx_Click" MouseLeave="MouseLeave"/>
 

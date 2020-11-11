@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI_ElevenDays.Controls;
+using UI_ElevenDays.Controls.Rooms;
 using UI_ElevenDays.ServiceReference2;
 
 namespace UI_ElevenDays
@@ -31,6 +32,8 @@ namespace UI_ElevenDays
         string game;
         string character;
 
+        object currRoom;
+
         public WindowGame(UserDTO user, string game, string character)
         {
             InitializeComponent();
@@ -39,6 +42,7 @@ namespace UI_ElevenDays
 
             callback.Count=100;
 
+            callback.PlayerChangedEvent += Callback_PlayerChangedEvent;
             callback.DisconnectedEvent += Callback_DisconnectedEvent;
             callback.StateEvent += Callback_StateEvent;
             callback.MoveEvent += Callback_MoveEvent;
@@ -64,16 +68,37 @@ namespace UI_ElevenDays
             fruitControl = new FruitControl($"Images/{character}Ch2.png", new Position() { X=0, Y=0 },user.Login);
             fruitControl.Tag = user.Login;
 
-            canvas.Children.Add(fruitControl);
+            currRoom = new StartRoom(fruitControl,fruitControls);
+            fruitControl.Room = "bath";
+            dockpanel.Children.Add((currRoom as StartRoom));
         }
 
+        private void Callback_PlayerChangedEvent(string login, string roomOld, string roomNew)
+        {
+            FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
 
+            if (roomOld != roomNew)
+            {
+                if (currRoom is StartRoom && roomOld == "bath")
+                    (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
+                if (currRoom is KitchenRoon && roomOld == "kitchen")
+                    (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
+
+                if (currRoom is StartRoom && roomNew == "bath")
+                    (currRoom as StartRoom).canvas.Children.Add(fruitControl);
+                if (currRoom is KitchenRoon && roomNew == "kitchen")
+                    (currRoom as KitchenRoon).canvas.Children.Add(fruitControl);
+            }
+        }
 
         private void Callback_DisconnectedEvent(string login)
         {
             FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
 
-            canvas.Children.Remove(fruitControl);
+            if (currRoom is StartRoom)
+                (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
+            if (currRoom is KitchenRoon)
+                (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
             fruitControls.Remove(fruitControl);
         }
 
@@ -95,7 +120,17 @@ namespace UI_ElevenDays
             FruitControl fruitControl = new FruitControl($"Images/{character}Ch2.png", position,login);
             fruitControl.Tag = login;
 
-            canvas.Children.Add(fruitControl);
+            string room = elevenDays_GameServiceClient.PlayerCurrentRoomByLogin(game, login);
+
+            fruitControl.Room = room;
+
+            if (room=="bath")
+            if (currRoom is StartRoom)
+                (currRoom as StartRoom).canvas.Children.Add(fruitControl);
+            if(room=="kitchen")
+            if (currRoom is KitchenRoon)
+                (currRoom as KitchenRoon).canvas.Children.Add(fruitControl);
+
             fruitControls.Add(fruitControl);
         }
 
@@ -111,6 +146,8 @@ namespace UI_ElevenDays
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
         {
             int left = 0, top = 0;
+
+            bool isE = false;
 
             Task.Run(() =>
             {
@@ -132,6 +169,10 @@ namespace UI_ElevenDays
                     left += 10;
                     state = "StayRight";
                 }
+                if (e.Key == Key.E)
+                {
+                    isE = true;
+                }
             }).Wait();
 
             //elevenDays_GameServiceClient.ChangePlayerState(game, user.Login, state);
@@ -141,13 +182,53 @@ namespace UI_ElevenDays
                 img = $"Images/{character}Ch2.png";
             if (state == "StayLeft")
                 img = $"Images/{character}Ch1.png";
+            else
+                img = $"Images/{character}Ch2.png";
+
             fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
 
             Canvas.SetLeft(fruitControl, Canvas.GetLeft(fruitControl)+left);
             Canvas.SetTop(fruitControl, Canvas.GetTop(fruitControl)+top);
 
+            string res="";
+            if (currRoom is StartRoom)
+            {
+                res = (currRoom as StartRoom).CheckOnCloseContact(fruitControl);
+                if (isE && res != "")
+                    (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
+            }
+            if (currRoom is KitchenRoon)
+            {
+                res = (currRoom as KitchenRoon).CheckOnCloseContact(fruitControl);
+                if (isE && res != "")
+                    (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
+            }
+
+            if (isE&&res!="")
+            {
+                if (res == "kitchen")
+                {
+                    currRoom = new KitchenRoon(fruitControl, fruitControls.Where(el=>el.Room==res).ToList());
+                }
+                if (res == "bath")
+                {
+                    currRoom = new StartRoom(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
+                }
+                fruitControl.Room = res;
+            }
+
+            dockpanel.Children.Clear();
+            dockpanel.Children.Add((currRoom as UIElement));
+
             elevenDays_GameServiceClient.Move(game, user.Login, new Position() { X = Canvas.GetLeft(fruitControl), Y = Canvas.GetTop(fruitControl) },state);
+
             //
+        }
+
+        private void ChangeCurrRoom()
+        {
+            dockpanel.Children.Clear();
+            dockpanel.Children.Add((currRoom as UIElement));
         }
 
         bool isEnded = false;

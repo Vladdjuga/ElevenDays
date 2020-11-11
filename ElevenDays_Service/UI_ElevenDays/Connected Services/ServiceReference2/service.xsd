@@ -243,6 +243,36 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="PlayerCurrentRoom">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ind" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlayerCurrentRoomResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlayerCurrentRoomResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlayerCurrentRoomByLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlayerCurrentRoomByLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PlayerCurrentRoomByLoginResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetMove">
     <xs:complexType>
       <xs:sequence>
