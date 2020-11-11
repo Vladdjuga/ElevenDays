@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DLL_User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,6 +53,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,15 +73,86 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CallbackHandler.cs" />
+    <Compile Include="Connected Services\ServiceReference2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FruitControl.xaml.cs">
+      <DependentUpon>FruitControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rooms\BathRoom.xaml.cs">
+      <DependentUpon>BathRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rooms\KitchenRoom.xaml.cs">
+      <DependentUpon>KitchenRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rooms\MasterRoom.xaml.cs">
+      <DependentUpon>MasterRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rooms\MedBayRoom.xaml.cs">
+      <DependentUpon>MedBayRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rooms\StartRoom.xaml.cs">
+      <DependentUpon>StartRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WindowDefaultToolBar.xaml.cs">
+      <DependentUpon>WindowDefaultToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WindowToolsControl.xaml.cs">
+      <DependentUpon>WindowToolsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuEDs.xaml.cs">
       <DependentUpon>MenuEDs.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenuOptions.xaml.cs">
       <DependentUpon>MenuOptions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuSelectCharacter.xaml.cs">
+      <DependentUpon>MenuSelectCharacter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectGameWindow.xaml.cs">
+      <DependentUpon>SelectGameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowGame.xaml.cs">
+      <DependentUpon>WindowGame.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\FruitControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\BathRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\KitchenRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\MasterRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\MedBayRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\StartRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowDefaultToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowToolsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LogInWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,7 +173,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MenuSelectCharacter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectGameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +208,37 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\ServiceReference2\DLL_User.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\ElevenDays_Service.DTOS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\ElevenDays_Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\PlayerCordons.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\service.wsdl" />
+    <None Include="Connected Services\ServiceReference2\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.GameInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.PlayerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.Position.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference2\UI_ElevenDays.ServiceReference2.UserDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,6 +262,81 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MenuOptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BananaCh2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Без имени-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Без имени-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Без имени-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference2\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference2\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BananaCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="KiwiCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CucumberCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TomatoCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MangoCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="OrangeCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="EggplantCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CabbageCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CarrotCh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\BathRoomDay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\ChillroomDay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\BathRoomNight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\KitchenNight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\KitchenDay.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

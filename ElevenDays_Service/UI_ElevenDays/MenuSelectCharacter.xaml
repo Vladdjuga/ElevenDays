@@ -1,0 +1,83 @@
+﻿<Window x:Class="UI_ElevenDays.MenuSelectCharacter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_ElevenDays"
+        mc:Ignorable="d"
+        Title="MenuSelectCharacter" Height="450" Width="800" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="DarkGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Label Foreground="Black" Content="Select Character" FontSize="45" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Chiller"></Label>
+
+        <Grid Grid.Row="1" Name="grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Border Tag="Banana" Grid.Column="0" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="BananaCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Kiwi" Grid.Column="1" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="KiwiCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Cucumber" Grid.Column="2" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3"  MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="CucumberCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Tomato" Grid.Column="3" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="TomatoCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Mango" Grid.Column="4" Grid.Row="0" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="MangoCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Orange" Grid.Column="0" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="OrangeCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Eggplant" Grid.Column="1" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="EggplantCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Cabbage" Grid.Column="2" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="CabbageCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Tag="Carrot" Grid.Column="3" Grid.Row="1" Height="Auto" Width="120" Margin="3, 3" MouseDown="Button_Click">
+                <Border.Background>
+                    <ImageBrush ImageSource="CarrotCh1.png" Stretch="Uniform"></ImageBrush>
+                </Border.Background>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

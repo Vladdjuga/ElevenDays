@@ -6,17 +6,29 @@
         xmlns:local="clr-namespace:UI_ElevenDays"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        xmlns:controls="clr-namespace:UI_ElevenDays.Controls"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MenuOptions" Height="450" Width="800">
-    <Grid >
-        <Grid.Background>
-            <ImageBrush ImageSource="MenuOptions.png"></ImageBrush>
-        </Grid.Background>
-    </Grid>
+        Title="MenuOptions" Height="450" Width="800" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <controls:WindowToolsControl TextField="X" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown"/>
+            <controls:WindowToolsControl TextField="□" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_1"/>
+            <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <DockPanel.Background>
+                <ImageBrush ImageSource="MenuOptions.png"></ImageBrush>
+            </DockPanel.Background>
+            <DockPanel Margin="200" DockPanel.Dock="Top">
+                <Label Content="Resolution"/>
+                <ComboBox BorderThickness="1" Name="cb" MinHeight="100"/>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
 </Window>
