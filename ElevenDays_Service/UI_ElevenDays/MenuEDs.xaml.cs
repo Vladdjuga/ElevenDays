@@ -30,7 +30,9 @@ namespace UI_ElevenDays
             InitializeComponent();
             soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
             soundPlay.Play();
-            this.user = user;
+
+
+            //elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
         }
 
 
@@ -43,7 +45,8 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridB.Background = imB;
+            gridB.Background = imB;
 
             soundPlay.Open(new Uri(@"Sound/Scarry Voise to Start btn.mp3", UriKind.Relative));
             soundPlay.Volume = 0.05;
@@ -59,7 +62,8 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridB.Background = imB;
+            gridB.Background = imB;
 
             soundPlay.Open(new Uri(@"Sound/Voise to Option btn.mp3", UriKind.Relative));
             soundPlay.Volume = 0.5;
@@ -74,7 +78,8 @@ namespace UI_ElevenDays
             bit.EndInit();
             imB.Stretch = Stretch.Fill;
             imB.ImageSource = bit;
-            grid.Background = imB;
+            gridB.Background = imB;
+            gridB.Background = imB;
 
             soundPlay.Open(new Uri(@"Sound/Scary Voise to Exit btn.mp3", UriKind.Relative));
             soundPlay.Volume = 1;
@@ -92,7 +97,7 @@ namespace UI_ElevenDays
         {
             elevenDays_GameServiceClient = new ElevenDays_GameServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
 
-            string game=elevenDays_GameServiceClient.CreateGame();
+            string game = elevenDays_GameServiceClient.CreateGame();
             if (elevenDays_GameServiceClient.StartByGameID(game, user))
             {
                 /*WindowGame windowGame = new WindowGame(user,game);
@@ -107,6 +112,22 @@ namespace UI_ElevenDays
         private void btnEx_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
+
+        }
+        private void func_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ImageBrush imB = new ImageBrush();
+            BitmapImage bit = new BitmapImage();
+            bit.BeginInit();
+            bit.UriSource = new Uri("Images/HappyImEDs.png", UriKind.Relative);
+            bit.EndInit();
+            imB.Stretch = Stretch.Fill;
+            imB.ImageSource = bit;
+            gridB.Background = imB;
+            soundPlay.Volume = 0.05;
+            soundPlay.Open(new Uri(@"Sound/Happy Three Friends.mp3", UriKind.Relative));
+            soundPlay.Play();
         }
     }
 }
