@@ -71,5 +71,13 @@ namespace UI_ElevenDays.Controls.Rooms
             }
             return "";
         }
+        public string CheckOnWhatOrientation(string tag)
+        {
+            if (door1.Tag == tag || door2.Tag == tag)
+                return "horizontal";
+            if (door3.Tag == tag || door4.Tag == tag)
+                return "vertical";
+            return "";
+        }
     }
 }

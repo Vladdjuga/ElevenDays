@@ -78,6 +78,7 @@
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="positionPlayer" type="q4:Position" />
         <xs:element minOccurs="0" name="state" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="room" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -243,36 +244,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="PlayerCurrentRoom">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="ind" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PlayerCurrentRoomResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="PlayerCurrentRoomResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PlayerCurrentRoomByLogin">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PlayerCurrentRoomByLoginResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="PlayerCurrentRoomByLoginResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetMove">
     <xs:complexType>
       <xs:sequence>
@@ -296,6 +267,7 @@
         <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/PlayerCordons" minOccurs="0" name="position" type="q9:Position" />
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="character" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="room" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -303,6 +275,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPlayerChangedRoom">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="room" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

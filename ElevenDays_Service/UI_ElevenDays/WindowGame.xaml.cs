@@ -62,33 +62,68 @@ namespace UI_ElevenDays
                 string charact = elevenDays_GameServiceClient.GetPlayerFruit(game, i);
                 Position position = elevenDays_GameServiceClient.GetPlayerPosition(game, i);
                 if (str!=user.Login)
-                Callback_NewPlayerArrivedEvent(position, str, charact);
+                Callback_NewPlayerArrivedEvent(position, str, charact, "chill");
             }
 
             fruitControl = new FruitControl($"Images/{character}Ch2.png", new Position() { X=0, Y=0 },user.Login);
             fruitControl.Tag = user.Login;
 
             currRoom = new StartRoom(fruitControl,fruitControls);
-            fruitControl.Room = "bath";
+            fruitControl.Room = "chill";
             dockpanel.Children.Add((currRoom as StartRoom));
         }
 
-        private void Callback_PlayerChangedEvent(string login, string roomOld, string roomNew)
+        private void Callback_PlayerChangedEvent(string login, string room)
         {
             FruitControl fruitControl = fruitControls.First(el => el.Tag.ToString() == login);
 
-            if (roomOld != roomNew)
-            {
-                if (currRoom is StartRoom && roomOld == "bath")
-                    (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
-                if (currRoom is KitchenRoon && roomOld == "kitchen")
-                    (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
+            fruitControl.Room = room;
 
-                if (currRoom is StartRoom && roomNew == "bath")
-                    (currRoom as StartRoom).canvas.Children.Add(fruitControl);
-                if (currRoom is KitchenRoon && roomNew == "kitchen")
-                    (currRoom as KitchenRoon).canvas.Children.Add(fruitControl);
+            if (currRoom is StartRoom && room != "chill")
+            {
+                if ((currRoom as StartRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
             }
+            if (currRoom is KitchenRoon && room != "kitchen")
+            {
+                if ((currRoom as KitchenRoon).canvas.Children.Contains(fruitControl))
+                    (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
+            }
+            if (currRoom is BathRoom && room != "bath")
+            {
+                if ((currRoom as BathRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as BathRoom).canvas.Children.Remove(fruitControl);
+            }
+            if (currRoom is MasterRoom && room != "maist")
+            {
+                if ((currRoom as MasterRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as MasterRoom).canvas.Children.Remove(fruitControl);
+            }
+            if (currRoom is MedBayRoom && room != "medbay")
+            {
+                if ((currRoom as MedBayRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as MedBayRoom).canvas.Children.Remove(fruitControl);
+            }
+
+            if (currRoom is StartRoom && room == "chill")
+                if (!(currRoom as StartRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as StartRoom).canvas.Children.Add(fruitControl);
+
+            if (currRoom is KitchenRoon && room == "kitchen")
+                if ((currRoom as KitchenRoon).canvas.Children.Contains(fruitControl))
+                    (currRoom as KitchenRoon).canvas.Children.Add(fruitControl);
+
+            if (currRoom is BathRoom && room == "bath")
+                if (!(currRoom as BathRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as BathRoom).canvas.Children.Add(fruitControl);
+
+            if (currRoom is MasterRoom && room == "maist")
+                if ((currRoom as MasterRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as MasterRoom).canvas.Children.Add(fruitControl);
+
+            if (currRoom is MedBayRoom && room == "medbay")
+                if (!(currRoom as MedBayRoom).canvas.Children.Contains(fruitControl))
+                    (currRoom as MedBayRoom).canvas.Children.Add(fruitControl);
         }
 
         private void Callback_DisconnectedEvent(string login)
@@ -99,6 +134,13 @@ namespace UI_ElevenDays
                 (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
             if (currRoom is KitchenRoon)
                 (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
+            if (currRoom is BathRoom)
+                (currRoom as BathRoom).canvas.Children.Remove(fruitControl);
+            if (currRoom is MasterRoom)
+                (currRoom as MasterRoom).canvas.Children.Remove(fruitControl);
+            if (currRoom is MedBayRoom)
+                (currRoom as MedBayRoom).canvas.Children.Remove(fruitControl);
+
             fruitControls.Remove(fruitControl);
         }
 
@@ -111,25 +153,34 @@ namespace UI_ElevenDays
                 img = $"Images/{charact}Ch2.png";
             if(state=="StayLeft")
                 img = $"Images/{charact}Ch1.png";
+            else
+                img = $"Images/{charact}Ch2.png";
 
             fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
         }
 
-        private void Callback_NewPlayerArrivedEvent(Position position, string login, string character)
+        private void Callback_NewPlayerArrivedEvent(Position position, string login, string character,string room)
         {
             FruitControl fruitControl = new FruitControl($"Images/{character}Ch2.png", position,login);
             fruitControl.Tag = login;
 
-            string room = elevenDays_GameServiceClient.PlayerCurrentRoomByLogin(game, login);
-
             fruitControl.Room = room;
 
-            if (room=="bath")
+            if (room=="chill")
             if (currRoom is StartRoom)
                 (currRoom as StartRoom).canvas.Children.Add(fruitControl);
             if(room=="kitchen")
             if (currRoom is KitchenRoon)
                 (currRoom as KitchenRoon).canvas.Children.Add(fruitControl);
+            if (room == "bath")
+                if (currRoom is BathRoom)
+                    (currRoom as BathRoom).canvas.Children.Add(fruitControl);
+            if (room == "maist")
+                if (currRoom is MasterRoom)
+                    (currRoom as MasterRoom).canvas.Children.Add(fruitControl);
+            if (room == "medbay")
+                if (currRoom is MedBayRoom)
+                    (currRoom as MedBayRoom).canvas.Children.Add(fruitControl);
 
             fruitControls.Add(fruitControl);
         }
@@ -187,42 +238,126 @@ namespace UI_ElevenDays
 
             fruitControl.imgBrush.ImageSource = new BitmapImage(new Uri(img, UriKind.Relative));
 
-            Canvas.SetLeft(fruitControl, Canvas.GetLeft(fruitControl)+left);
-            Canvas.SetTop(fruitControl, Canvas.GetTop(fruitControl)+top);
+            if (Canvas.GetLeft(fruitControl) + left >= 0 && Canvas.GetLeft(fruitControl) + left + fruitControl.Width <= 1920 && Canvas.GetTop(fruitControl) + top >= 0 && Canvas.GetTop(fruitControl) + top + fruitControl.Height <= 1080)
+            {
+                Canvas.SetLeft(fruitControl, Canvas.GetLeft(fruitControl) + left);
+                Canvas.SetTop(fruitControl, Canvas.GetTop(fruitControl) + top);
 
-            string res="";
+                string res = "";
+                string orient = "";
+
+                ClearCurrentRoom(out res, isE,out orient);
+                
+                if (isE && res != "")
+                {
+                    double w=0, h=0;
+                    if (res == "kitchen")
+                    {
+                        currRoom = new KitchenRoon(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
+                    }
+                    if (res == "bath")
+                    {
+                        currRoom = new BathRoom(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
+                    }
+                    if (res == "chill")
+                    {
+                        currRoom = new StartRoom(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
+                    }
+                    if (res == "maist")
+                    {
+                        currRoom = new MasterRoom(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
+                    }
+                    if (res == "medbay")
+                    {
+                        currRoom = new MedBayRoom(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
+                    }
+
+                    if (orient == "horizontal")
+                        Canvas.SetLeft(fruitControl, 1920 - Canvas.GetLeft(fruitControl) - fruitControl.Width);
+                    if(orient=="vertical")
+                        Canvas.SetTop(fruitControl, 1080 - Canvas.GetTop(fruitControl)-fruitControl.Height);
+
+                    fruitControl.Room = res;
+                }
+
+                dockpanel.Children.Clear();
+                dockpanel.Children.Add((currRoom as UIElement));
+
+                elevenDays_GameServiceClient.Move(game, user.Login, new Position() { X = Canvas.GetLeft(fruitControl), Y = Canvas.GetTop(fruitControl) }, state, fruitControl.Room);
+
+                //
+            }
+        }
+
+        private void ClearCurrentRoom(out string res, bool isE,out string orient)
+        {
+            res = "";
+            orient = "";
             if (currRoom is StartRoom)
             {
                 res = (currRoom as StartRoom).CheckOnCloseContact(fruitControl);
+                orient = (currRoom as StartRoom).CheckOnWhatOrientation(res);
                 if (isE && res != "")
+                {
                     (currRoom as StartRoom).canvas.Children.Remove(fruitControl);
+                    foreach (var item in fruitControls.Where(el => el.Room == "chill").ToList())
+                    {
+                        (currRoom as StartRoom).canvas.Children.Remove(item);
+                    }
+                }
             }
             if (currRoom is KitchenRoon)
             {
                 res = (currRoom as KitchenRoon).CheckOnCloseContact(fruitControl);
+                orient = (currRoom as KitchenRoon).CheckOnWhatOrientation(res);
                 if (isE && res != "")
+                {
                     (currRoom as KitchenRoon).canvas.Children.Remove(fruitControl);
+                    foreach (var item in fruitControls.Where(el => el.Room == "kitchen").ToList())
+                    {
+                        (currRoom as KitchenRoon).canvas.Children.Remove(item);
+                    }
+                }
             }
-
-            if (isE&&res!="")
+            if (currRoom is BathRoom)
             {
-                if (res == "kitchen")
+                res = (currRoom as BathRoom).CheckOnCloseContact(fruitControl);
+                orient = (currRoom as BathRoom).CheckOnWhatOrientation(res);
+                if (isE && res != "")
                 {
-                    currRoom = new KitchenRoon(fruitControl, fruitControls.Where(el=>el.Room==res).ToList());
+                    (currRoom as BathRoom).canvas.Children.Remove(fruitControl);
+                    foreach (var item in fruitControls.Where(el => el.Room == "bath").ToList())
+                    {
+                        (currRoom as BathRoom).canvas.Children.Remove(item);
+                    }
                 }
-                if (res == "bath")
-                {
-                    currRoom = new StartRoom(fruitControl, fruitControls.Where(el => el.Room == res).ToList());
-                }
-                fruitControl.Room = res;
             }
-
-            dockpanel.Children.Clear();
-            dockpanel.Children.Add((currRoom as UIElement));
-
-            elevenDays_GameServiceClient.Move(game, user.Login, new Position() { X = Canvas.GetLeft(fruitControl), Y = Canvas.GetTop(fruitControl) },state);
-
-            //
+            if (currRoom is MedBayRoom)
+            {
+                res = (currRoom as MedBayRoom).CheckOnCloseContact(fruitControl);
+                orient = (currRoom as MedBayRoom).CheckOnWhatOrientation(res);
+                if (isE && res != "")
+                {
+                    (currRoom as MedBayRoom).canvas.Children.Remove(fruitControl);
+                    foreach (var item in fruitControls.Where(el => el.Room == "medbay").ToList())
+                    {
+                        (currRoom as MedBayRoom).canvas.Children.Remove(item);
+                    }
+                }
+            }
+            if (currRoom is MasterRoom)
+            {
+                res = (currRoom as MasterRoom).CheckOnCloseContact(fruitControl);
+                orient = (currRoom as MasterRoom).CheckOnWhatOrientation(res);
+                if (isE && res != "")
+                {
+                    (currRoom as MasterRoom).canvas.Children.Remove(fruitControl);
+                    foreach (var item in fruitControls.Where(el => el.Room == "maist").ToList())
+                    {
+                        (currRoom as MasterRoom).canvas.Children.Remove(item);
+                    }
+                }
+            }
         }
 
         private void ChangeCurrRoom()

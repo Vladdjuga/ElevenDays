@@ -8,11 +8,11 @@
              d:DesignHeight="1080" d:DesignWidth="1920" MaxWidth="1920" MaxHeight="1080" Tag="start">
     <Canvas x:Name="canvas">
         <Canvas.Background>
-            <ImageBrush ImageSource="BathRoomDay.png"/>
+            <ImageBrush ImageSource="ChillroomDay.png"/>
         </Canvas.Background>
-        <Border Width="51" x:Name="door1" Canvas.Top="385" Canvas.Left="0" Height="302" BorderBrush="Red" Tag="mayst"/>
-        <Border x:Name="door2" Width="50" Height="302" Canvas.Top="385" Canvas.Left="1870" BorderBrush="Red" Tag="chill"/>
-        <Border x:Name="door3" Height="55" Width="299" Canvas.Left="811" Canvas.Top="0" BorderBrush="Red" Tag="kitchen"/>
-        <Border x:Name="door4" Height="55" Width="299" Canvas.Left="811" Canvas.Top="1025" BorderBrush="Red" Tag="medbay"/>
+        <Border Width="51" x:Name="door1" Canvas.Top="385" Canvas.Left="0" Height="302" BorderBrush="Red" Tag="kitchen"/>
+        <Border x:Name="door2" Width="50" Height="302" Canvas.Top="385" Canvas.Left="1870" BorderBrush="Red" Tag="medbay"/>
+        <Border x:Name="door3" Height="55" Width="299" Canvas.Left="811" Canvas.Top="0" BorderBrush="Red" Tag="maist"/>
+        <Border x:Name="door4" Height="55" Width="299" Canvas.Left="811" Canvas.Top="1025" BorderBrush="Red" Tag="bath"/>
     </Canvas>
 </UserControl>

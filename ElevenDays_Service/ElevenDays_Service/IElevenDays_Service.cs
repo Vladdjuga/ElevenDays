@@ -16,7 +16,7 @@ namespace ElevenDays_Service
     {
         // метод будет проверять есть ли данный юзер
         [OperationContract(IsOneWay = false)]
-        UserDTO Login(string login,string password);
+        UserDTO Login(string login, string password);
         // метод будет проверять есть ли данный юзер
         [OperationContract(IsOneWay = false)]
         bool Register(string login, string email, string password);
@@ -31,9 +31,9 @@ namespace ElevenDays_Service
         void End(string login);
         // метод будет изменять позицию игрока на ту , которая указана в параметрах
         [OperationContract(IsOneWay = true)]
-        void Move(string gameid, string login, Position positionPlayer,string state);
+        void Move(string gameid, string login, Position positionPlayer, string state,string room);
         [OperationContract(IsOneWay = true)]
-        void ChangePlayerState(string gameid, string login,string currentPlayerState);
+        void ChangePlayerState(string gameid, string login, string currentPlayerState);
         // метод получения всех наявных игр
         [OperationContract(IsOneWay = false)]
         GameInfo GetGame(int ind);
@@ -45,7 +45,7 @@ namespace ElevenDays_Service
         int GetPlayersCount(string game);
         // метод получения всех игроков в введеной игре
         [OperationContract(IsOneWay = false)]
-        PlayerInfo GetPlayer(string game,int ind);
+        PlayerInfo GetPlayer(string game, int ind);
         // метод получения всех игроков в введеной игре
         [OperationContract(IsOneWay = false)]
         string GetPlayerString(string game, int ind);
@@ -64,13 +64,8 @@ namespace ElevenDays_Service
         string FindGameById(string id);
         //
         [OperationContract(IsOneWay = false)]
-        bool IsAnyWithFruit(string game,string fruit);
-        //
-        [OperationContract(IsOneWay = false)]
-        string PlayerCurrentRoom(string game, int ind);
-        //
-        [OperationContract(IsOneWay = false)]
-        string PlayerCurrentRoomByLogin(string game, string login);
+        bool IsAnyWithFruit(string game, string fruit);
+
     }
 
     public interface ICallback
@@ -82,10 +77,13 @@ namespace ElevenDays_Service
         void GetState(string state, string login,string character);
 
         [OperationContract(IsOneWay = true)]
-        void GetNewPlayerArrived(Position position, string login, string character);
+        void GetNewPlayerArrived(Position position, string login, string character,string room);
 
         [OperationContract(IsOneWay = true)]
         void GetDisconected(string login);
+
+        [OperationContract(IsOneWay = true)]
+        void GetPlayerChangedRoom(string login,string room);
     }
 
     [DataContract]
@@ -161,12 +159,12 @@ namespace ElevenDays_Service
             }
         }
 
-        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login, string character)
+        internal void NotifyPlayersAboutNewPlayer(Position startPosition, string login, string character,string room)
         {
             foreach (var item in Players)
             {
                 if (item.User.Login != login)
-                    item.Callback.GetNewPlayerArrived(startPosition, login, character);
+                    item.Callback.GetNewPlayerArrived(startPosition, login, character, room);
             }
         }
     }

@@ -88,6 +88,12 @@
     <Compile Include="Controls\Rooms\KitchenRoom.xaml.cs">
       <DependentUpon>KitchenRoom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Rooms\MasterRoom.xaml.cs">
+      <DependentUpon>MasterRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Rooms\MedBayRoom.xaml.cs">
+      <DependentUpon>MedBayRoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Rooms\StartRoom.xaml.cs">
       <DependentUpon>StartRoom.xaml</DependentUpon>
     </Compile>
@@ -124,6 +130,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Rooms\KitchenRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\MasterRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Rooms\MedBayRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +325,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Controls\Rooms\BathRoomDay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\ChillroomDay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\BathRoomNight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\KitchenNight.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Controls\Rooms\KitchenDay.png" />

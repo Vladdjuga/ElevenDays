@@ -10,9 +10,9 @@ namespace UI_ElevenDays
     public class CallbackHandler : IElevenDays_GameServiceCallback
     {
         public event Action<Position, string> MoveEvent;
-        public event Action<Position, string, string> NewPlayerArrivedEvent;
+        public event Action<Position, string, string,string> NewPlayerArrivedEvent;
         public event Action<string, string, string> StateEvent;
-        public event Action<string, string, string> PlayerChangedEvent;
+        public event Action<string, string> PlayerChangedEvent;
         public event Action<string> DisconnectedEvent;
         public int Count = 0;
 
@@ -21,9 +21,9 @@ namespace UI_ElevenDays
             MoveEvent?.Invoke(position, login);
         }
 
-        public void GetNewPlayerArrived(Position position, string login, string character)
+        public void GetNewPlayerArrived(Position position, string login, string character,string room)
         {
-            NewPlayerArrivedEvent?.Invoke(position, login,character);
+            NewPlayerArrivedEvent?.Invoke(position, login,character,room);
 
         }
 
@@ -37,9 +37,9 @@ namespace UI_ElevenDays
             DisconnectedEvent?.Invoke(login);
         }
 
-        public void PlayerChangedRoom(string login, string roomOld, string roomNew)
+        public void GetPlayerChangedRoom(string login, string room)
         {
-            PlayerChangedEvent?.Invoke(login, roomOld, roomNew);
+            PlayerChangedEvent?.Invoke(login, room);
         }
     }
 }

@@ -37,24 +37,25 @@ namespace UI_ElevenDays.Controls.Rooms
         }
         public string CheckOnCloseContact(FruitControl fruitControl)
         {
-            door1.BorderThickness = new Thickness(0);
+            //door1.BorderThickness = new Thickness(0);
             door2.BorderThickness = new Thickness(0);
             door3.BorderThickness = new Thickness(0);
             door4.BorderThickness = new Thickness(0);
 
-            double xD1 = Canvas.GetLeft(door1), yD1 = Canvas.GetTop(door1);
+            //double xD1 = Canvas.GetLeft(door1), yD1 = Canvas.GetTop(door1);
             double xD2 = Canvas.GetLeft(door2), yD2 = Canvas.GetTop(door2);
             double xD3 = Canvas.GetLeft(door3), yD3 = Canvas.GetTop(door3);
             double xD4 = Canvas.GetLeft(door4), yD4 = Canvas.GetTop(door4);
 
             double xF = Canvas.GetLeft(fruitControl), yF = Canvas.GetTop(fruitControl);
 
-            if (xF <= xD1 + 200 && yF <= yD1 + 200 && yF >= yD1 - 300)
-            {
-                door1.BorderThickness = new Thickness(5);
-                return door1.Tag.ToString();
-            }
-            else if (xF >= xD3 - 200 && xF <= xD3 + 300 && yF <= yD3 + 200)
+            //if (xF <= xD1 + 200 && yF <= yD1 + 200 && yF >= yD1 - 300)
+            //{
+            //    door1.BorderThickness = new Thickness(5);
+            //    return door1.Tag.ToString();
+            //}
+
+            if (xF >= xD3 - 200 && xF <= xD3 + 300 && yF <= yD3 + 200)
             {
                 door3.BorderThickness = new Thickness(5);
                 return door3.Tag.ToString();
@@ -69,6 +70,14 @@ namespace UI_ElevenDays.Controls.Rooms
                 door4.BorderThickness = new Thickness(5);
                 return door4.Tag.ToString();
             }
+            return "";
+        }
+        public string CheckOnWhatOrientation(string tag)
+        {
+            if (/*door1.Tag == tag || */ door2.Tag == tag)
+                return "horizontal";
+            if (door3.Tag == tag || door4.Tag == tag)
+                return "vertical";
             return "";
         }
     }

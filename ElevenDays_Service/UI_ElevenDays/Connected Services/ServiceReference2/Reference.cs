@@ -400,10 +400,10 @@ namespace UI_ElevenDays.ServiceReference2 {
         System.Threading.Tasks.Task EndAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/Move")]
-        void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state);
+        void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state, string room);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/Move")]
-        System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state);
+        System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state, string room);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/ChangePlayerState")]
         void ChangePlayerState(string gameid, string login, string currentPlayerState);
@@ -476,18 +476,6 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruitResponse")]
         System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoom", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomResponse")]
-        string PlayerCurrentRoom(string game, int ind);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoom", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomResponse")]
-        System.Threading.Tasks.Task<string> PlayerCurrentRoomAsync(string game, int ind);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLogin", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLoginResponse")]
-        string PlayerCurrentRoomByLogin(string game, string login);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLogin", ReplyAction="http://tempuri.org/IElevenDays_GameService/PlayerCurrentRoomByLoginResponse")]
-        System.Threading.Tasks.Task<string> PlayerCurrentRoomByLoginAsync(string game, string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -500,10 +488,13 @@ namespace UI_ElevenDays.ServiceReference2 {
         void GetState(string state, string login, string character);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetNewPlayerArrived")]
-        void GetNewPlayerArrived(UI_ElevenDays.ServiceReference2.Position position, string login, string character);
+        void GetNewPlayerArrived(UI_ElevenDays.ServiceReference2.Position position, string login, string character, string room);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetDisconected")]
         void GetDisconected(string login);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetPlayerChangedRoom")]
+        void GetPlayerChangedRoom(string login, string room);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -574,12 +565,12 @@ namespace UI_ElevenDays.ServiceReference2 {
             return base.Channel.EndAsync(login);
         }
         
-        public void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state) {
-            base.Channel.Move(gameid, login, positionPlayer, state);
+        public void Move(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state, string room) {
+            base.Channel.Move(gameid, login, positionPlayer, state, room);
         }
         
-        public System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state) {
-            return base.Channel.MoveAsync(gameid, login, positionPlayer, state);
+        public System.Threading.Tasks.Task MoveAsync(string gameid, string login, UI_ElevenDays.ServiceReference2.Position positionPlayer, string state, string room) {
+            return base.Channel.MoveAsync(gameid, login, positionPlayer, state, room);
         }
         
         public void ChangePlayerState(string gameid, string login, string currentPlayerState) {
@@ -676,22 +667,6 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         public System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit) {
             return base.Channel.IsAnyWithFruitAsync(game, fruit);
-        }
-        
-        public string PlayerCurrentRoom(string game, int ind) {
-            return base.Channel.PlayerCurrentRoom(game, ind);
-        }
-        
-        public System.Threading.Tasks.Task<string> PlayerCurrentRoomAsync(string game, int ind) {
-            return base.Channel.PlayerCurrentRoomAsync(game, ind);
-        }
-        
-        public string PlayerCurrentRoomByLogin(string game, string login) {
-            return base.Channel.PlayerCurrentRoomByLogin(game, login);
-        }
-        
-        public System.Threading.Tasks.Task<string> PlayerCurrentRoomByLoginAsync(string game, string login) {
-            return base.Channel.PlayerCurrentRoomByLoginAsync(game, login);
         }
     }
 }

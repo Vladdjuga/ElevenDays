@@ -14,7 +14,7 @@ using System.Text;
 namespace ElevenDays_Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
-                     ConcurrencyMode = ConcurrencyMode.Reentrant)]
+                     ConcurrencyMode = ConcurrencyMode.Single)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -74,7 +74,7 @@ namespace ElevenDays_Service
         }
 
         // метод для изменения положения игрока
-        public void Move(string gameid, string login, Position positionPlayer,string state)
+        public void Move(string gameid, string login, Position positionPlayer,string state,string room)
         {
             GameInfo gameInfo = session.Games.FirstOrDefault(el => el.Id == gameid);
             foreach (var player in gameInfo.Players)
@@ -83,7 +83,7 @@ namespace ElevenDays_Service
                 {
                     player.Hitbox.StartPosition = positionPlayer;
                     player.PlayerState = state;
-                    player.Room = "bath";
+                    player.Room = room;
                     break;
                 }
             }
@@ -98,7 +98,7 @@ namespace ElevenDays_Service
                         {
                             item.Callback.GetMove(positionPlayer, login);
                             item.Callback.GetState(state, login, playerInfo.Player_Fruit.ToString());
-                            //item.Callback.PlayerChangedRoom(item.User.Login, item.Room, room);
+                            item.Callback.GetPlayerChangedRoom(login, room);
                         }
                         catch(Exception ex) { }
                     }
@@ -133,7 +133,7 @@ namespace ElevenDays_Service
                         pi = new PlayerInfo() { User = user, Player_Fruit = Player_Fruit.Banana, IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 } };
                         pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                         game.Players.Add(pi);
-                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login, pi.Player_Fruit.ToString());
+                        game.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition,pi.User.Login, pi.Player_Fruit.ToString(), pi.Room);
                         return game.Id;
                     }
                 }
@@ -152,7 +152,6 @@ namespace ElevenDays_Service
 
         public bool StartByGameID(string gameid, UserDTO userDTO,string player_Fruit)
         {
-            PlayerInfo pi = null;
             User user = mapperFrom.Map<User>(userDTO);
             GameInfo gameInfo = GetGameInfoByID(gameid);
 
@@ -160,10 +159,14 @@ namespace ElevenDays_Service
             {
                 if (gameInfo.Players.Count < 9)
                 {
-                    pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 }, Room="bath" };
+                    PlayerInfo pi = new PlayerInfo() { User = user, Player_Fruit = (Player_Fruit)Enum.Parse(typeof(Player_Fruit), player_Fruit), IsImposter = false, Hitbox = new Hitbox() { StartPosition = new Position(0, 0), Height = 10, Width = 10 }, Room = "chill" };
                     pi.Callback = OperationContext.Current.GetCallbackChannel<ICallback>();
                     gameInfo.Players.Add(pi);
-                    gameInfo.NotifyPlayersAboutNewPlayer(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString());
+                    foreach (var item in gameInfo.Players)
+                    {
+                        if (item.User.Login != pi.User.Login)
+                            item.Callback.GetNewPlayerArrived(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString(),pi.Room);
+                    }
                     return true;
                 }
             }
@@ -290,16 +293,16 @@ namespace ElevenDays_Service
             return gameInfo.Players.Any(el => el.Player_Fruit.ToString() == fruit);
         }
 
-        public string PlayerCurrentRoom(string game, int ind)
-        {
-            GameInfo gameInfo = GetGameInfoByID(game);
-            return gameInfo.Players[ind].Room;
-        }
+        //public string PlayerCurrentRoom(string game, int ind)
+        //{
+        //    GameInfo gameInfo = GetGameInfoByID(game);
+        //    return gameInfo.Players[ind].Room;
+        //}
 
-        public string PlayerCurrentRoomByLogin(string game, string login)
-        {
-            GameInfo gameInfo = GetGameInfoByID(game);
-            return gameInfo.Players.First(el=>el.User.Login==login).Room;
-        }
+        //public string PlayerCurrentRoomByLogin(string game, string login)
+        //{
+        //    GameInfo gameInfo = GetGameInfoByID(game);
+        //    return gameInfo.Players.First(el=>el.User.Login==login).Room;
+        //}
     }
 }
