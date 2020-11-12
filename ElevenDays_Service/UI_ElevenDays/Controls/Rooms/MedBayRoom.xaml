@@ -8,7 +8,7 @@
              d:DesignHeight="1080" d:DesignWidth="1920" MaxWidth="1920" MaxHeight="1080" Tag="start">
     <Canvas x:Name="canvas">
         <Canvas.Background>
-            <ImageBrush ImageSource="ChillroomDay.png"/>
+            <ImageBrush ImageSource="MedroomDay.png"/>
         </Canvas.Background>
         <Border Width="51" x:Name="door1" Canvas.Top="385" Canvas.Left="0" Height="302" BorderBrush="Red" Tag="chill"/>
         <!--<Border x:Name="door2" Width="50" Height="302" Canvas.Top="385" Canvas.Left="1870" BorderBrush="Red" Tag="medbay"/>-->

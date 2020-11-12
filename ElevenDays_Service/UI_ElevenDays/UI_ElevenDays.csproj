@@ -338,6 +338,12 @@
   <ItemGroup>
     <Resource Include="Controls\Rooms\KitchenDay.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\MedroomDay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Rooms\FixroomDay.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
