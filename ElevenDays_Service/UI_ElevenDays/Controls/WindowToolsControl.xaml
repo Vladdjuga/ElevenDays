@@ -7,20 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style x:Key="roundedButton" TargetType="Border">
+        <Style x:Key="roundedButton" TargetType="TextBlock">
             <Style.Setters>
-                <Setter Property="Background" Value="#FFCE2C2C"/>
-                <Setter Property="CornerRadius" Value="200"/>
-                <Setter Property="Width" Value="75"/>
+                <!--<Setter Property="Background" Value="#FFCE2C2C"/>-->
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Margin" Value="10,0"/>
             </Style.Setters>
-                <Style.Triggers>
+            <Style.Triggers>
                 <EventTrigger RoutedEvent="MouseEnter">
                     <EventTrigger.Actions>
                         <BeginStoryboard>
-                            <Storyboard TargetProperty="Width">
-                                <DoubleAnimation From="75" To="100"
+                            <Storyboard TargetProperty="Foreground.Color">
+                                <ColorAnimation From="White" To="Red"
                                          AutoReverse="False"
-                                         Duration="0:0:0:0.25" />
+                                        Duration="0:0:0:0.2"  />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -28,32 +28,10 @@
                 <EventTrigger RoutedEvent="MouseLeave">
                     <EventTrigger.Actions>
                         <BeginStoryboard>
-                            <Storyboard TargetProperty="Width">
-                                <DoubleAnimation From="100" To="75"
+                            <Storyboard TargetProperty="Foreground.Color">
+                                <ColorAnimation From="Red" To="White"
                                          AutoReverse="False"
-                                        Duration="0:0:0:0.25"  />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseDown">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard TargetProperty="Background.Color">
-                                <ColorAnimation From="#FFCE2C2C" To="#FF8B1B1B"
-                                         AutoReverse="False"
-                                        Duration="0:0:0:0.01"  />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseUp">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard TargetProperty="Background.Color">
-                                <ColorAnimation From="#FF8B1B1B" To="#FFCE2C2C"
-                                         AutoReverse="False"
-                                        Duration="0:0:0:0.01"/>
+                                        Duration="0:0:0:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -62,8 +40,6 @@
         </Style>
     </UserControl.Resources>
     <DockPanel x:Name="dockPanel">
-        <Border Style="{StaticResource roundedButton}">
-            <TextBlock x:Name="tb" Text="{Binding TextField}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
-        </Border>
+        <TextBlock Style="{StaticResource roundedButton}" x:Name="tb" Text="{Binding TextField}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
     </DockPanel>
 </UserControl>
