@@ -79,5 +79,24 @@ namespace UI_ElevenDays.Controls.Rooms
                 return "vertical";
             return "";
         }
+        public bool IsContactWithPhysElements(FruitControl fruitControl, int top, int left)
+        {
+            foreach (var item in canvas.Children)
+            {
+                if (item is Border)
+                {
+                    if ((item as Border).Tag.ToString() == "phys")
+                    {
+                        //MessageBox.Show($"{Canvas.GetLeft(fruitControl)}/{fruitControl.Width}/{Canvas.GetLeft((item as Border))}/{(item as Border).Width}||{Canvas.GetTop(fruitControl)}/{Canvas.GetTop((item as Border))}/{(item as Border).Height}/{fruitControl.Height}");
+                        if ((Canvas.GetLeft(fruitControl) + fruitControl.Width + left > Canvas.GetLeft((item as Border)) &&
+                            Canvas.GetLeft(fruitControl) + left < Canvas.GetLeft((item as Border)) + (item as Border).Width) &&
+                            (Canvas.GetTop(fruitControl) + top < Canvas.GetTop((item as Border)) + (item as Border).Height &&
+                            Canvas.GetTop(fruitControl) + fruitControl.Height + top >= Canvas.GetTop((item as Border))))
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

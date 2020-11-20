@@ -244,6 +244,35 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GameBeginCheck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GameBeginCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GameBeginCheckResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AwaitTimer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PlayerDied">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="game" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetMove">
     <xs:complexType>
       <xs:sequence>
@@ -283,6 +312,30 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="room" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewDay">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dayInd" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGameStarted">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMeImposter">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPlayerDied">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

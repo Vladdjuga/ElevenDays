@@ -10,11 +10,13 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace ElevenDays_Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
-                     ConcurrencyMode = ConcurrencyMode.Single)]
+                     ConcurrencyMode = ConcurrencyMode.Multiple),CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class ElevenDays_GameService : IElevenDays_GameService
     {
         Session session = new Session();
@@ -165,8 +167,16 @@ namespace ElevenDays_Service
                     foreach (var item in gameInfo.Players)
                     {
                         if (item.User.Login != pi.User.Login)
-                            item.Callback.GetNewPlayerArrived(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString(),pi.Room);
+                            item.Callback.GetNewPlayerArrived(pi.Hitbox.StartPosition, pi.User.Login, pi.Player_Fruit.ToString(), pi.Room);
                     }
+                    //if (gameInfo.Players.Count == 2)
+                    //{
+                    //    foreach (var item in gameInfo.Players)
+                    //    {
+                    //        item.Callback.GetGameStarted();
+                    //    }
+
+                    //}
                     return true;
                 }
             }
@@ -275,6 +285,10 @@ namespace ElevenDays_Service
                 }
         }
 
+        public void BeginGame(GameInfo gameInfo)
+        {
+
+        }
         public string GetPlayerFruit(string game, int ind)
         {
             GameInfo gameInfo = GetGameInfoByID(game);
@@ -291,6 +305,57 @@ namespace ElevenDays_Service
         {
             GameInfo gameInfo = GetGameInfoByID(game);
             return gameInfo.Players.Any(el => el.Player_Fruit.ToString() == fruit);
+        }
+
+        static Random random = new Random();
+        public bool GameBeginCheck(string game)
+        {
+            GameInfo gameInfo = session.Games.First(el => el.Id == game);
+            if (gameInfo.Players.Count == 2)
+            {
+                gameInfo.IsStarted = true;
+                int ind = random.Next(0, gameInfo.Players.Count);
+                foreach (var item in gameInfo.Players)
+                {
+                    item.Callback.GetGameStarted();
+                    if (gameInfo.Players.LastIndexOf(item) == ind)
+                        item.Callback.GetMeImposter();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public void AwaitTimer(string game)
+        {
+            GameInfo gameInfo = session.Games.First(el => el.Id == game);
+            if (gameInfo.IsStarted)
+            {
+                TimeSpan timeSpan = new TimeSpan();
+                while (timeSpan.TotalSeconds / 60 < 11)
+                {
+                    timeSpan.Add(new TimeSpan(0, 0, 1));
+                    if(timeSpan.TotalSeconds%60==0)
+                    {
+                        foreach (var item in gameInfo.Players)
+                        {
+                            item.Callback.GetNewDay((int)(timeSpan.TotalSeconds / 60));
+                        }
+                    }
+                }
+            }
+        }
+
+        public void PlayerDied(string game, string login)
+        {
+            GameInfo gameInfo = session.Games.First(el => el.Id == game);
+            if (gameInfo.IsStarted)
+            {
+                foreach (var item in gameInfo.Players)
+                {
+                    item.Callback.GetPlayerDied(login);
+                }
+            }
         }
 
         //public string PlayerCurrentRoom(string game, int ind)

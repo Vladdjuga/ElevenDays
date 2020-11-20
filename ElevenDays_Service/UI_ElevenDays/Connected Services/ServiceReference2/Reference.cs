@@ -476,6 +476,24 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruit", ReplyAction="http://tempuri.org/IElevenDays_GameService/IsAnyWithFruitResponse")]
         System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GameBeginCheck", ReplyAction="http://tempuri.org/IElevenDays_GameService/GameBeginCheckResponse")]
+        bool GameBeginCheck(string game);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IElevenDays_GameService/GameBeginCheck", ReplyAction="http://tempuri.org/IElevenDays_GameService/GameBeginCheckResponse")]
+        System.Threading.Tasks.Task<bool> GameBeginCheckAsync(string game);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/AwaitTimer")]
+        void AwaitTimer(string game);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/AwaitTimer")]
+        System.Threading.Tasks.Task AwaitTimerAsync(string game);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/PlayerDied")]
+        void PlayerDied(string game, string login);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/PlayerDied")]
+        System.Threading.Tasks.Task PlayerDiedAsync(string game, string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -495,6 +513,18 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetPlayerChangedRoom")]
         void GetPlayerChangedRoom(string login, string room);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetNewDay")]
+        void GetNewDay(int dayInd);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetGameStarted")]
+        void GetGameStarted();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetMeImposter")]
+        void GetMeImposter();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IElevenDays_GameService/GetPlayerDied")]
+        void GetPlayerDied(string login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -667,6 +697,30 @@ namespace UI_ElevenDays.ServiceReference2 {
         
         public System.Threading.Tasks.Task<bool> IsAnyWithFruitAsync(string game, string fruit) {
             return base.Channel.IsAnyWithFruitAsync(game, fruit);
+        }
+        
+        public bool GameBeginCheck(string game) {
+            return base.Channel.GameBeginCheck(game);
+        }
+        
+        public System.Threading.Tasks.Task<bool> GameBeginCheckAsync(string game) {
+            return base.Channel.GameBeginCheckAsync(game);
+        }
+        
+        public void AwaitTimer(string game) {
+            base.Channel.AwaitTimer(game);
+        }
+        
+        public System.Threading.Tasks.Task AwaitTimerAsync(string game) {
+            return base.Channel.AwaitTimerAsync(game);
+        }
+        
+        public void PlayerDied(string game, string login) {
+            base.Channel.PlayerDied(game, login);
+        }
+        
+        public System.Threading.Tasks.Task PlayerDiedAsync(string game, string login) {
+            return base.Channel.PlayerDiedAsync(game, login);
         }
     }
 }

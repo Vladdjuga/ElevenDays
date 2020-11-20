@@ -8,6 +8,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace ElevenDays_Service
 {
@@ -65,7 +68,15 @@ namespace ElevenDays_Service
         //
         [OperationContract(IsOneWay = false)]
         bool IsAnyWithFruit(string game, string fruit);
-
+        //
+        [OperationContract(IsOneWay = false)]
+        bool GameBeginCheck(string game);
+        //
+        [OperationContract(IsOneWay = true)]
+        void AwaitTimer(string game);
+        //
+        [OperationContract(IsOneWay = true)]
+        void PlayerDied(string game, string login);
     }
 
     public interface ICallback
@@ -84,6 +95,18 @@ namespace ElevenDays_Service
 
         [OperationContract(IsOneWay = true)]
         void GetPlayerChangedRoom(string login,string room);
+
+        [OperationContract(IsOneWay = true)]
+        void GetNewDay(int dayInd);
+
+        [OperationContract(IsOneWay = true)]
+        void GetGameStarted();
+
+        [OperationContract(IsOneWay = true)]
+        void GetMeImposter();
+
+        [OperationContract(IsOneWay = true)]
+        void GetPlayerDied(string login);
     }
 
     [DataContract]
@@ -122,6 +145,12 @@ namespace ElevenDays_Service
         //[DataMember]
         // массив игроков с максимальным значением - 10
         public List<PlayerInfo> Players { get; set; } = new List<PlayerInfo>(9);
+
+        public TimeSpan Time { get; set; }
+
+        public bool IsStarted { get; set; }
+
+        public DispatcherTimer Dispatcher = new DispatcherTimer();
 
         [DataMember]
         // id комнаты

@@ -14,6 +14,10 @@ namespace UI_ElevenDays
         public event Action<string, string, string> StateEvent;
         public event Action<string, string> PlayerChangedEvent;
         public event Action<string> DisconnectedEvent;
+        public event Action<string> PlayerDiedEvent;
+        public event Action<int> NewDayEvent;
+        public event Action GameStartEvent;
+        public event Action MeImposterEvent;
         public int Count = 0;
 
         public void GetMove(Position position, string login)
@@ -40,6 +44,26 @@ namespace UI_ElevenDays
         public void GetPlayerChangedRoom(string login, string room)
         {
             PlayerChangedEvent?.Invoke(login, room);
+        }
+
+        public void GetNewDay(int dayInd)
+        {
+            NewDayEvent?.Invoke(dayInd);
+        }
+
+        public void GetGameStarted()
+        {
+            GameStartEvent?.Invoke();
+        }
+
+        public void GetMeImposter()
+        {
+            MeImposterEvent?.Invoke();
+        }
+
+        public void GetPlayerDied(string login)
+        {
+            PlayerDiedEvent?.Invoke(login);
         }
     }
 }

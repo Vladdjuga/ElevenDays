@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI_ElevenDays.Controls.Rooms"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920" MaxWidth="1920" MaxHeight="1080" Tag="start">
+             d:DesignHeight="1080" d:DesignWidth="1920" MaxWidth="1920" MaxHeight="1080" Tag="chill">
     <Canvas x:Name="canvas">
         <Canvas.Background>
             <ImageBrush ImageSource="ChillroomDay.png"/>
@@ -14,5 +14,12 @@
         <Border x:Name="door2" Width="50" Height="302" Canvas.Top="385" Canvas.Left="1870" BorderBrush="Red" Tag="medbay"/>
         <Border x:Name="door3" Height="55" Width="299" Canvas.Left="811" Canvas.Top="0" BorderBrush="Red" Tag="maist"/>
         <Border x:Name="door4" Height="55" Width="299" Canvas.Left="811" Canvas.Top="1025" BorderBrush="Red" Tag="bath"/>
+        <Border Tag="phys" Width="511" Height="212" Canvas.Left="28" Canvas.Top="871"/>
+        <Border Tag="phys" Width="214" Height="317" Canvas.Left="1471" Canvas.Top="27"/>
+
+        <Border Tag="maist" Width="100" Height="100" Canvas.Left="863" Canvas.Top="94"/>
+        <Border Tag="chill" Width="100" Height="100" Canvas.Left="1585" Canvas.Top="385"/>
+        <Border Tag="bath" Width="100" Height="100" Canvas.Left="811" Canvas.Top="643"/>
+        <Border Tag="kitchen" Width="100" Height="100" Canvas.Left="96" Canvas.Top="385"/>
     </Canvas>
 </UserControl>

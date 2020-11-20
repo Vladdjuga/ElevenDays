@@ -26,6 +26,9 @@
             <controls:WindowToolsControl TextField="_" DockPanel.Dock="Right" MouseUp="WindowToolsControl_MouseDown_2"/>
             <Button Content="Exit" Canvas.Left="922" Canvas.Top="10" FontSize="20" Click="Button_Click"/>
             <TextBlock Name="tbCode" Text="SAMPLE" FontSize="40" Opacity="0.5" Margin="10,0"/>
+            <TextBlock Name="tbRole" Text="CIVIL" FontSize="40" Opacity="0.5" Margin="10,0"/>
+            <TextBlock Name="tbTimer" Text="" FontSize="40" Opacity="0.5" Margin="10,0"/>
+            <TextBlock Name="tbDay" Text="" FontSize="40" Opacity="0.5" Margin="10,0" DockPanel.Dock="Right"/>
         </DockPanel>
         <DockPanel Name="dockpanel">
         </DockPanel>
